@@ -1,0 +1,29 @@
+%h2.titulo01 Listado de Parámetros Mantenedores
+- form_tag mantenedors_path, :method => 'get' do
+  %p
+    Tipo:  #{text_field_tag :search, params[:search]}
+    \#{submit_tag "Buscar", :tipo => nil}
+  %p
+    Paginación: #{select_paginacion @per_page}
+= will_paginate @eventos
+%table.sglea.datos
+  %tr
+    %td.titg Tipo
+    %td.titg Valor
+    %td.titg Misc
+    %td.titg Código
+    %td.titg Ver
+    %td.titg Editar
+    %td.titg Eliminar
+  - @mantenedors.each do |mantenedor|
+    %tr
+      %td= mantenedor.tipo
+      %td= mantenedor.valor
+      %td= mantenedor.misc
+      %td= mantenedor.codigo
+      %td= link_to image_tag("ver.png"), mantenedor
+      %td= link_to image_tag("editar.png"), edit_mantenedor_path(mantenedor)
+      %td= link_to image_tag("eliminar.png"), mantenedor, :confirm => '¿Está Seguro?', :method => :delete
+      
+%br/
+= link_button 'Agregar parámetro', new_mantenedor_path

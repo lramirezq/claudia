@@ -1,0 +1,456 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1', {'packages':['corechart']});
+      
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+      
+      // Callback that creates and populates a data table, 
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+      // Create data eventos.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+
+      <% @eventos.each do |evento|%> 
+        <%  if (evento.delito == @eventos.last.delito) %>
+            ['<%=evento.delito%>', <%=evento.cantidad%>]
+        <%else%>
+            ['<%=evento.delito%>', <%=evento.cantidad%>],
+        <%end%>
+
+      <%end%>
+      ]);
+
+      // Create data tipo victimas.
+      var data1 = new google.visualization.DataTable();
+      data1.addColumn('string', 'Topping');
+      data1.addColumn('number', 'Slices');
+      data1.addRows([
+
+      <% @grafic.each do |g|%> 
+      <%  if (g.tipo == @grafic.last.tipo) %>
+                ['<%=g.tipo%>', <%=g.cant%>]
+        <%else %>
+                ['<%=g.tipo%>', <%=g.cant%>],
+      <%  end %>
+
+
+      <%end%>
+      ]);
+
+
+
+       // Create data condenas.
+      var data2 = new google.visualization.DataTable();
+      data2.addColumn('string', 'Topping');
+      data2.addColumn('number', 'Slices');
+      data2.addRows([
+
+      <% @condenas.each do |condena|%> 
+         <%  if (condena.condena == @condenas.last.condena) %>
+            ['<%=condena.condena%>', <%=condena.cantidad%>]
+          <%else%>
+            ['<%=condena.condena%>', <%=condena.cantidad%>],
+          <%end%>
+      <%end%>
+      ]);
+
+
+      // Create data condenas efectivas.
+      var data3 = new google.visualization.DataTable();
+      data3.addColumn('string', 'Topping');
+      data3.addColumn('number', 'Slices');
+      data3.addRows([
+
+      <% @condenas_efectivas.each do |condena|%> 
+        <% if (condena.beneficio == "") %>
+        <%  condena.beneficio = "Pena Efectiva" %>
+        <% end %>
+      
+          <%  if (condena.beneficio == @condenas.last.condena) %>
+            ['<%=condena.beneficio%>', <%=condena.cantidad%>]
+          <%else%>
+            ['<%=condena.beneficio%>', <%=condena.cantidad%>],
+          <%end%>
+          
+      <%end%>
+      ]);
+
+
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(document.getElementById('evento'));
+      chart.draw(data, {width: 600, height: 400});
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart1 = new google.visualization.PieChart(document.getElementById('victimas'));
+      chart1.draw(data1, {width: 600, height: 400});
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart2 = new google.visualization.PieChart(document.getElementById('condenas'));
+      chart2.draw(data2, {width: 600, height: 400});
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart3 = new google.visualization.PieChart(document.getElementById('condenas_efectivas'));
+      chart3.draw(data3, {width: 600, height: 400});
+
+
+    }
+    </script>
+  </head>
+
+<body>
+
+<h2> Reporte Ejecutivo </h2>
+<form action="ejecutivo">
+  <table class='sglea'>
+    <tr>
+      <td class='tit'>Seleccione Rango de Fecha</td>
+      <td class='inp'><input id="fechaOcurrencia1" name="fechaOcurrencia1" size="16" type="text"/>
+        --
+        <input id="fechaOcurrencia2" name="fechaOcurrencia2" size="16" type="text"/></td>
+      <td class='inp'> &nbsp;</td>
+   
+      <script type='text/javascript'>
+            //<![CDATA[
+              $('#fechaOcurrencia1').datetimepicker({
+                timeText: 'Tiempo',
+                hourText: 'hora',
+                minuteText: 'min',
+                stepMinute: 1,
+                currentText: 'Fecha y hora actual'
+              });
+            //]]>
+          </script>
+       <script type='text/javascript'>
+            //<![CDATA[
+              $('#fechaOcurrencia2').datetimepicker({
+                timeText: 'Tiempo',
+                hourText: 'hora',
+                minuteText: 'min',
+                stepMinute: 1,
+                currentText: 'Fecha y hora actual'
+              });
+            //]]>
+          </script>      
+      <tr>
+    <td colspan="8"><div align="center">
+      <input type="submit" value="Generar Informe !">
+    </div></td>
+    </tr>
+</table>
+</form>
+
+<h1> Eventos ingresados</h1>
+<p>Durante el período de consulta <b>(<%= @fecini%> | <%=@fecter%> )</b> han ingresado los siguientes eventos según tipo de delito: 
+ <table class='sglea'>
+  <tr>
+    <td class='titg'>Delito</td>
+    <td class='titg'>Cantidad</td>
+  </tr>
+<% total = 0 %>
+  <% @eventos.each do |evento|%> 
+      <tr>
+      <td class='inp'><%= evento.delito%> </td>
+      <td class='inp'><%= evento.cantidad%> </td>
+      </tr>
+      <% total = total + evento.cantidad.to_i %>
+  <%end%>
+  <tr>
+    <td><b>TOTAL</b></td>
+    <td><b><%=total%></b></td>
+  </tr>
+ </table>
+ <!--Div Para Grafico de Eventos-->
+    <div id="evento" align="center"></div>
+
+<h1>Tipo de Victima </h1>
+<p>Durante el período de consulta  <b>(<%= @fecini%> | <%=@fecter%> )</b> se han ingresado los siguientes tipos de víctimas en los delitos que se indican: 
+<table  class='sglea'>
+<tr>
+  <td class='titg'><b>Delitos</b></td>
+  <td class='titg'><b>Metro</b></td>
+  <td class='titg'><b>Usuario Metro</b></td>
+  <td class='titg'><b>Funcionario Metro</b></td>
+  <td class='titg'><b>Contratista Metro</b></td>
+  <td class='titg'><b>Otra persona (tercero)</b></td>
+  <td class='titg'><B>TOTAL</B></td>
+</tr>
+
+<tr>
+
+<% am = 0 %>
+<% aum = 0 %>
+<% afm = 0 %>
+<% acm = 0 %>
+<% aop = 0 %>
+<% tot = 0 %>
+
+
+
+<% @delitos.each do |delito|%>
+    <tr>
+      <td class='inp'><%=delito.valor%></td>
+
+
+    <!-- Metro -->
+    <td class='inp'>
+      <% m = 0 %>
+      <% @eventos1.each do |eve|  %>
+        <% if eve.delitoPrincipal == delito.valor %>
+           <% eve.victimas.each do |vic|%>            
+            <% if vic.tipo=="Metro" %>
+              <% m = m + 1%>
+            <%end %>      
+          <%end%>
+        <%end%>
+      <%end%>
+    <%=m%>
+    <% am = am + m%>
+    </td>
+
+    <!-- usuario Metro -->
+    <td class='inp'>
+      <% um = 0 %>
+      <% @eventos1.each do |eve|  %>
+        <% if eve.delitoPrincipal == delito.valor %>
+             <% eve.victimas.each do |vic|%>            
+                <% if vic.tipo=="Usuario Metro" %>
+                  <% um = um + 1%>
+                <%end %>      
+              <%end%>
+        <%end%>
+      <%end%>
+    <%=um%>
+    <% aum = aum + um%>
+    </td>
+
+   <!-- Funcionario Metro -->
+    <td class='inp'>
+      <% fm = 0 %>
+      <% @eventos1.each do |eve|  %>
+        <% if eve.delitoPrincipal == delito.valor %>
+          <% eve.victimas.each do |vic|%>            
+              <% if vic.tipo=="Funcionario Metro" %>
+                <% fm = fm + 1%>
+              <%end %>      
+          <%end%>
+        <%end%>
+      <%end%>
+    <%=fm%>
+    <% afm = afm + fm%>
+    </td>
+
+    <!-- Contratista Metro -->
+    <td class='inp'>
+      <% cm = 0 %>
+      <% @eventos1.each do |eve|  %>
+        <% if eve.delitoPrincipal == delito.valor %>
+          <% eve.victimas.each do |vic|%>            
+              <% if vic.tipo=="Contratista Metro" %>
+                <% cm = cm + 1%>
+              <%end %>      
+          <%end%>
+        <%end%>
+      <%end%>
+    <%=cm%>
+    <% acm = acm + cm%>
+    </td>    
+
+    <!-- Otra persona (tercero) -->
+    <td class='inp'>
+      <% op = 0 %>
+      <% @eventos1.each do |eve|  %>
+        <% if eve.delitoPrincipal == delito.valor %>
+            <% eve.victimas.each do |vic|%>  
+            <% if vic.tipo=="Otra persona (tercero)" %>
+              <% op = op + 1%>
+            <%end %>      
+
+          <%end%>
+        <%end%>
+      <%end%>
+    <%=op%>
+    <% aop = aop + op%>
+    </td>    
+
+    <td class='inp'><b><%= m + um + fm + cm + op%> </b>
+    <%tot = tot + m + um + fm + cm + op%>
+    </td>
+
+
+
+</tr>
+
+<%end%>
+<tr>
+   <td class='inp'><b>Totales</b</td>
+   <td class='inp'><b><%=am%></b></td>
+   <td class='inp'><b><%=aum%></b></td>
+   <td class='inp'><b><%=afm%></b></td>
+   <td class='inp'><b><%=acm%></b></td>
+   <td class='inp'><b><%=aop%></b></td>
+   <td class='inp'><b><%=tot%></b></td>
+</tr>
+</table>
+<!--Div Para Grafico de Tipo de Victimas-->
+    <div id="victimas" align="center"></div>
+
+
+<!-- Tercer Informe Causas -->
+<h1>Causas Gestionadas</h1>
+<p>Del total de eventos ingresados durante el período de consulta  <b>(<%= @fecini%> | <%=@fecter%> )</b>  el detalle de la gestión de las causas generadas es el siguiente: 
+
+<%totcau = 0%>
+<table class='sglea'>
+  <tr>
+    <td class='titg'>Estado Causa </td>
+    <td class='titg'>Cantidad</td>
+  </tr>
+  <% co = 0%>
+  <% @cau.each do |c| %>
+    <tr>
+    <td class='inp'><%=c.estado%></td>
+    <td class='inp'><%=c.cantidad%></td>
+  <% co = co + c.cantidad.to_i  %>
+</tr>
+<%end%>
+  <tr>
+    <td class='inp'><b>TOTAL</b></td>
+    <td class='inp'><b><%=co%></b></td>
+  </tr>
+</table>
+
+
+
+<table class='sglea'>
+  <tr>
+    <td class='titg'>DETALLE CAUSAS TERMINADAS </td>
+    <td class='titg'>Cantidad</td>
+  </tr>
+ <tr>
+    <td class='titg' colspan='2'>TERMINO IRREGULAR</td>
+  </tr>
+  <% co = 0%>
+  <% @tirregular.each do |ti| %>
+    <tr>
+    <td class='inp'><%=ti.terminoIrregular%></td>
+    <td class='inp'><%=ti.cantidad%></td>
+  <% co = co + ti.cantidad.to_i  %>
+</tr>
+<%end%>
+  <tr>
+    <td class='inp'><b>TOTAL</b></td>
+    <td class='inp'><b><%=co%><%totcau = totcau + co%></b></td>
+  </tr>
+
+
+<tr>
+    <td class='titg' colspan='2'>TERMINO FISCALIA</td>
+  </tr>
+  <% co = 0%>
+  <% @tfiscalia.each do |tf| %>
+    <tr>
+    <td class='inp'><%=tf.terminoFiscalia%></td>
+    <td class='inp'><%=tf.cantidad%></td>
+  <% co = co + tf.cantidad.to_i  %>
+</tr>
+<%end%>
+  <tr>
+    <td class='inp'><b>TOTAL</b></td>
+    <td class='inp'><b><%=co%><%totcau = totcau + co%></b></td>
+  </tr>
+
+<tr>
+    <td class='titg' colspan='2'>TERMINO JUDICIAL</td>
+  </tr>
+  <% co = 0%>
+  <% @tjucial.each do |tj| %>
+    <tr>
+    <td class='inp'><%=tj.terminoJucial%></td>
+    <td class='inp'><%=tj.cantidad%></td>
+  <% co = co + tj.cantidad.to_i  %>
+</tr>
+<%end%>
+  <tr>
+    <td class='inp'><b>TOTAL</b></td>
+    <td class='inp'><b><%=co%><%totcau = totcau + co%></b></td>
+  </tr>
+
+<tr>
+    <td class='inp'><b>TOTAL GENERAL</b></td>
+    <td class='inp'><b><%=totcau%></b></td>
+
+</tr>
+</table>
+
+
+<!-- Condenas -->
+<h1>Detalle de Condenas en Causas terminadas por sentencias condenatorias</h1>
+<p>Del total de causas terminadas por sentencia condenatoria durante el período de consulta <b>(<%= @fecini%> | <%=@fecter%> )</b>, , el detalle de las condenas (en relación a la pena principal) obtenidas es el siguiente: 
+<table class='sglea'>
+  <tr>
+    <td class='titg'>Detalle Condena </td>
+    <td class='titg'>Cantidad</td>
+  </tr>
+  <% co = 0%>
+  <% @condenas.each do |condena| %>
+    <tr>
+    <td class='inp'><%=condena.condena%></td>
+    <td class='inp'><%=condena.cantidad%></td>
+  <% co = co + condena.cantidad.to_i  %>
+</tr>
+<%end%>
+  <tr>
+    <td class='inp'><b>TOTAL</b></td>
+    <td class='inp'><b><%=co%></b></td>
+  </tr>
+</table>
+
+<!--Div Para Grafico de Condenas-->
+    <div id="condenas" align="center"></div>
+
+
+
+<!-- Condenas Efectivas-->
+<h1>Detalle de cumplimiento de Condenas Privativas de Libertad</h1>
+<p>Del total de causas terminadas por sentencia condenatoria privativa de libertad durante el período de consulta <b>(<%= @fecini%> | <%=@fecter%> )</b>, el detalle del cumplimiento las condenas obtenidas es el siguiente: 
+<table class='sglea'>
+  <tr>
+    <td class='titg'>Detalle de cumplimiento de condena </td>
+    <td class='titg'>Cantidad</td>
+  </tr>
+  <% co = 0%>
+  <% @condenas_efectivas.each do |con_efectiva| %>
+    
+  
+    <tr>
+    <td class='inp'><%=con_efectiva.beneficio == "" ? "Pena Efectiva" : con_efectiva.beneficio%></td>
+    <td class='inp'><%=con_efectiva.cantidad%></td>
+  <% co = co + con_efectiva.cantidad.to_i  %>
+</tr>
+<%end%>
+  <tr>
+    <td class='inp'><b>TOTAL</b></td>
+    <td class='inp'><b><%=co%></b></td>
+  </tr>
+</table>
+
+<!--Div Para Grafico de Condenas-->
+    <div id="condenas_efectivas" align="center"></div>
+
+
+
+
+
+</body>

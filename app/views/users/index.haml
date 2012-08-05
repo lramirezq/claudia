@@ -1,0 +1,21 @@
+%h2.titulo01 Listado Usuarios
+
+%table.sglea.datos
+  %tr
+    %td.titg Nombre
+    %td.titg RUN o Login
+    %td.titg Roles
+    %td.titg Ver
+    %td.titg Editar
+    %td.titg Borrar
+  - @users.each do |user|
+    %tr
+      %td= user.nombre
+      %td= user.login
+      %td= user.roles.map(&:nombre).join(', ')
+      %td= link_to image_tag("ver.png"), user
+      %td= link_to image_tag("editar.png"), edit_user_path(user)
+      %td= link_to image_tag("eliminar.png"), user, :confirm => '¿Está seguro?', :method => :delete
+
+%br/
+= link_button 'Nuevo Usuario', new_user_path

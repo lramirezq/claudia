@@ -1,0 +1,37 @@
+- title 'Inicio Sesión'
+%body.login
+  #wrap
+    #cent-vert
+      #header-l
+        #top-logo-l
+        #top-login-l
+          = form_for @user_session, :url => logon_path do |f|
+            %table{:border => "0", :cellpadding => "0", :cellspacing => "1"}
+              - if @user_session.errors.any?
+                %tr
+                  %td
+                  %td
+                  %td
+                  %td.rojo Usuario o clave incorrecto
+              %tr
+                %td.flecha{:rowspan => "3"}
+                  %img{:align => "absmiddle", :height => "37", :src => "images/flecha-d.gif", :width => "13"}/
+                %td.rojo Usuario
+                %td.blanco
+                %td.blanco= f.text_field :login
+              %tr
+                %td.rojo Contraseña
+                %td.blanco
+                %td.blanco= f.password_field :password
+              %tr
+                %td
+                %td.negro
+              %tr
+                %td
+                %td
+                %td
+                %td.negro= f.submit 'Ingresar'
+      %p
+      %p.modulo
+        \© 2012. Todos los Derechos Reservados
+        

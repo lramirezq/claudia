@@ -1,0 +1,16 @@
+%h2.titulo01 Información Usuario
+
+%table.sglea
+  %tr
+    %td.tit Nombre
+    %td.inp= @user.nombre
+  %tr
+    %td.tit Login
+    %td.inp= @user.login
+  %tr
+    %td.tit Roles
+    %td.inp= @user.roles.map(&:nombre).join(', ')
+
+%br/
+= link_button 'Editar', edit_user_path(@user)
+= link_button 'Volver', users_path

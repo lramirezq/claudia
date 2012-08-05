@@ -1,0 +1,36 @@
+var fiscalias = new Array();
+var juzgados = new Array();
+
+<% for fiscalia in @fiscalias -%>
+fiscalias.push(new Array("<%=h fiscalia.misc %>", "<%=h fiscalia.valor %>"));
+<% end -%>
+
+<% for juzgado in @juzgados -%>
+juzgados.push(new Array("<%=h juzgado.misc %>", "<%=h juzgado.valor %>"));
+<% end -%>
+
+
+function sectorSelected(sector_select) {
+  sectorid = '#' + sector_select.id;
+  fiscaliaid = sectorid.replace('sector', 'fiscalia');
+  juzgadoid = sectorid.replace('sector', 'juzgadoGarantia');
+  options = $(fiscaliaid)[0].options;
+  options.length = 1;
+  
+  sector = $(sectorid).val();
+  
+  $.each(fiscalias, function(i, fiscalia) {
+    if (fiscalia[0] == sector) {
+      options[options.length] = new Option(fiscalia[1], fiscalia[1]);
+    }
+  });
+  
+  options = $(juzgadoid)[0].options;
+  options.length = 1;
+  $.each(juzgados, function(i, juzgado) {
+    if (juzgado[0] == sector) {
+      options[options.length] = new Option(juzgado[1], juzgado[1]);
+    }
+  });
+  
+}

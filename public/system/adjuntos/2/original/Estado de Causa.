@@ -1,0 +1,72 @@
+Evento Seleccionado =>     Estado Causa => Victima 
+					=> Imputado
+				1 => 1
+Fiscalia => ComboBox --
+RUC Fiscalia => String
+JuzgadoGarantia => Combobox
+RITGarantia => String
+TribunalOralPenal => String
+RITTop => String
+CorteApelacion => String
+N° Ingreso => String
+________________________________
+Intervinientes
+
+Objeto => Victima => victima.nombres + victima.apellidos
+AbogadoPatrocinante => String
+Querellante => String
+Objeto => Imputado => imputado.nombres + imputados.apellidos
+DefensorTitular => String
+FiscalTitular => String
+_________________________________________
+DELITO E INICIO DE ACCIONEs
+
+Objeto => Delito => evento.delito
+FomaInicio => ComboBox
+ComparenciaAbogadoGrupoTC => ComboBox
+Estado de Causa => ComboBox => Informe Causa Terminada => 4.4
+
+_________________________________________
+TRAMITES, ACTUALIZACIONES Y PROGRAMACIONES
+
+Fecha 
+Actualizacion => String
+Archivo => Upload File.
+Observaciones => String
+Programacion => Fecha => Se envia alarma Outlook 
+Obs. fiscalia Metro => text
+
+
+___________________________________________
+INFORME DE CAUSA TERMINADA
+
+Evento adverso Objeto de Contrao => BOOLEAN SI NO Uso GTC
+Termino Irregular => ComboBox 
+Termino Fiscalia => Boolean
+Termino Judicial => ComboBox
+Suspencion Condiciol => ComboBox
+AcuerdoReparatorio => text
+Condena => Combobox
+DetCondena => String 
+Beneficios => ComboBox
+Absolucion => text
+
+______________________________________________
+INFORME VICTIMA O IMPUTADO TERMINO DE CAUSA
+
+Fecha
+Confirmacion Informe => boolean
+AdjuntarArchivo => Upload File
+Observaciones => text
+ValidacionAboGTC => boolean => boton
+ValidacionAboMetro => boolean => boton
+
+
+
+REPORTES
+
+
+
+
+
+

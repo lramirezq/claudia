@@ -1,0 +1,24 @@
+= form_for(@mantenedor) do |f|
+  - if @mantenedor.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@mantenedor.errors.count, "error")
+        no permiten generar este nuevo mantenedor
+      %ul
+        - @mantenedor.errors.full_messages.each do |msg|
+          %li= msg
+  %table.sglea
+    %tr
+      %td.tit Tipo
+      %td.inp= f.text_field :tipo
+    %tr 
+      %td.tit Valor
+      %td.inp= f.text_field :valor
+    %tr
+      %td.tit Misc
+      %td.inp= f.text_field :misc
+    %tr
+      %td.tit Codigo
+      %td.inp= f.text_field :codigo
+    %tr 
+      %td= f.submit

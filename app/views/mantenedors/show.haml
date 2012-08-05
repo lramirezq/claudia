@@ -1,0 +1,19 @@
+%h2.titulo01 Información parámetro
+
+%table.sglea
+  %tr
+    %td.tit Tipo
+    %td.inp= @mantenedor.tipo
+  %tr
+    %td.tit Valor
+    %td.inp= @mantenedor.valor
+  %tr
+    %td.tit Misc
+    %td.inp= @mantenedor.misc
+  %tr
+    %td.tit Código
+    %td.inp= @mantenedor.codigo
+
+%br/
+= link_button 'Editar', edit_mantenedor_path(@mantenedor)
+= link_button 'Volver', mantenedors_path

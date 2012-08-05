@@ -1,0 +1,18 @@
+= form_for @user_session, :url => logon_path do |f|
+  - if @user_session.errors.any?
+    #errorExplanation
+      %h2 Corriga los siguientes errores por favor
+      %ul
+        - @user_session.errors.full_messages.each do |msg|
+          %li= msg
+      %hr/
+  %table.login
+    %tr
+      %td  Usuario
+      %td= f.text_field :login
+    %tr
+      %td  Clave
+      %td= f.password_field :password
+    %tr
+      %td
+      %td= f.submit 'Iniciar Sesión'

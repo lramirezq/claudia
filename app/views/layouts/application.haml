@@ -1,0 +1,94 @@
+!!! 5
+%html
+  %head
+    - if yield(:title)
+      %title .:: Claudia Aguila - #{yield :title} ::.
+    - else
+      %title .:: Claudia Aguila ::.
+    = stylesheet_link_tag 'sglea'
+    = stylesheet_link_tag 'jquery-ui-1.8.6.custom'
+    = stylesheet_link_tag 'login' if not current_user
+    = stylesheet_link_tag 'print', :media => :print
+    = javascript_include_tag :all
+    = csrf_meta_tag
+    = yield(:head)
+  - if not current_user
+    = yield
+  - else
+    %body
+      #header
+        #h-top
+          #top-logo
+          #top-login
+            %table{:border => "0", :cellpadding => "0", :cellspacing => "1"}
+              %tr
+                %td.flecha{:rowspan => "4"}
+                  = image_tag 'flecha.gif', {:align => 'absmiddle', :height => '37', :width => '13'}
+                %td
+                %td.negro
+                  = link_to 'Cambiar Password', password_path
+              %tr
+                %td.rojo Usuario
+                %td.blanco #{current_user.nombre}
+              %tr
+                %td.rojo Perfil
+                %td.blanco #{current_user.roles.map(&:nombre).join(', ')}
+              %tr
+                %td
+                %td.negro
+                  = link_to 'Cerrar sesión', logoff_url
+        #h-bottom
+          %table{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "950"}
+            %tr
+              %td{:valign => "top", :width => "100"}
+              %td{:valign => "top", :width => "914"}
+                #h-menu
+                  %ul
+                    %li.inicia{:onMouseOut => "desaparece('Iniciativas');", :onMouseOver => "javascript: aparece('Iniciativas');"}
+                      %a{:href => "#"} Proyectos
+                      %ul#Iniciativas
+                        
+                    
+                    %li.docume{:onMouseOut => "desaparece('Asistencias');", :onMouseOver => "javascript: aparece('Asistencias');"}
+                      %a{:href => "#"} Fase
+                      %ul#Asistencias
+                   
+                    
+                    %li.docume{:onMouseOut => "desaparece('Documen');", :onMouseOver => "javascript: aparece('Documen');"}
+                      %a{:href => "#"} Actividad
+                      %ul#Documen
+                       
+                        
+                        
+                    
+                    %li.docume{:onMouseOut => "desaparece('Documentowq');", :onMouseOver => "javascript: aparece('Documentowq');"}
+                      %a{:href => "#"} Reportes
+                      
+                     
+                        
+                        
+                          
+                       
+						  
+                    %li.docume{:onMouseOut => "desaparece('Documento');", :onMouseOver => "javascript: aparece('Documento');"}
+                      %a{:href => "#"} Mantenedores
+                      %ul#Documento
+                        %li
+                          - if can? :manager, Mantenedor 
+                            =   link_to 'Parámetros', mantenedors_path
+                        %li
+                          - if can? :manager, User 
+                            =   link_to 'Usuarios', users_path
+
+                    %li.docume{:onMouseOut => "desaparece('Docum');", :onMouseOver => "javascript: aparece('Docum');"}
+                      %a{:href => "#"} Ayuda
+                      %ul#Docum
+                        %li
+                          %a{:href => "../glosario/delitos.pdf"} Glosario
+                    
+                        
+                          
+          %br
+          -flash.each do |name, msg|
+            = content_tag :div, msg, :class => "flash", :id => "#{name}"
+      = yield

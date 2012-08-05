@@ -1,0 +1,31 @@
+#header {
+    display: none;
+}
+
+.ocultar_print {
+    display: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+.pagebreak {
+  page-break-before: always;
+}
+
+table.sglea {
+  width: 100%;
+}
+
+td.tit {
+  border: 1px solid #666;
+}
+
+td.titg {
+  border: 1px solid #666;
+}
+
+td.inp {
+  border: 1px solid #666;
+}

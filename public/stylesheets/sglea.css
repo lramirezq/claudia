@@ -1,0 +1,321 @@
+body { margin:0; font-size:11px; font-family:Arial, Helvetica, sans-serif; padding:0px; border:#ececec; background:#ececec; background-image: url(/images/fondo-h-02.gif); background-repeat: repeat-x;}
+
+
+.encabezado {
+	padding: 4px 8px;
+	margin: 10px 0;
+	font-size: 14px;
+  border: solid 1px #000; 
+	height: 20px;
+	min-width: 800px;
+}
+
+.izq {
+	float: left;
+}
+
+.der {
+	float: right;
+}
+
+.txt-cen {
+	text-align: center;
+}
+
+/* Titulo Vertical */
+td.tit {
+	border-left:5px solid #c00;
+	background-color:#fff;
+	font-weight: bold;
+}
+
+/* Titulo Horizontal */
+td.titg {
+	border-top:1px solid #c00;
+	background-color:#BBC0C8;
+	color:#333;
+	font-size:11px
+}
+  
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div .ui_tpicker_hour div { padding-right: 2px; }
+.ui-timepicker-div .ui_tpicker_minute div { padding-right: 6px; }
+.ui-timepicker-div .ui_tpicker_second div { padding-right: 6px; }
+.ui-timepicker-div td { font-size: 50%; }
+
+td.inp { border:1px solid #fff;}
+
+input { border:1px dotted #666; font-size:11px; font-family:Arial, Helvetica, sans-serif; padding:2px 5px; text-align: left; color: #0000;}
+textarea { border:1px dotted #666; font-size:11px; font-family:Arial, Helvetica, sans-serif; line-height:14px; padding:5px;}
+select { border:1px dotted #666; font-size:11px; font-family:Arial, Helvetica, sans-serif; padding:2px 5px;}
+input.capitalize {text-transform:capitalize;}
+
+
+input[disabled="disabled"]{
+color: #7676f2;
+background-color: #d1e5f9;
+border: #7676f2 solid 1px;
+}
+
+table.sglea.datos tr:nth-of-type(odd) {  background-color:#ccc;} 
+
+.subtitulotabla{
+  background-color: #CCC;
+}
+
+
+.flash {
+	padding: 4px 8px;
+	margin: -3px 10px;
+	font-size: 14px;
+	text-align: center;
+	display: inline;
+	float: right;
+}
+.flash#notice {
+	background-color: #CFC;
+    border: solid 1px #6C6;
+}
+.flash#alert {
+	background-color: #FCC;
+    border: solid 1px #C66;
+}
+
+
+h1 {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+table.sglea {
+	 width:100%; font-family:Arial, Helvetica, sans-serif; font-size:10px;
+}
+table.sglea.noborder {
+	border: none;
+}
+
+h2.titulo01 {
+	font-size: 14px;
+	font-weight: bold;
+	background-color:#ececec;
+	font-family:Arial, Helvetica, sans-serif;
+	font-color: #000;
+	
+	}
+
+h2.rojo {
+	font-color: #ff0000;
+  font-size: 14px;
+	font-weight: bold;
+  text-align: center;
+	background-color:#ececec;
+	font-family:Arial, Helvetica, sans-serif;
+  
+	
+	}
+
+  
+table.login {
+	width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+textarea {
+	width: 98%;
+}
+img { border-width:0; }
+
+textarea[disabled="disabled"] {
+background-color:#D1E5F9;
+border-bottom-color:#7676F2;
+border-bottom-style:solid;
+border-bottom-width:1px;
+border-left-color-ltr-source:physical;
+border-left-color-rtl-source:physical;
+border-left-color-value:#7676F2;
+border-left-style-ltr-source:physical;
+border-left-style-rtl-source:physical;
+border-left-style-value:solid;
+border-left-width-ltr-source:physical;
+border-left-width-rtl-source:physical;
+border-left-width-value:1px;
+border-right-color-ltr-source:physical;
+border-right-color-rtl-source:physical;
+border-right-color-value:#7676F2;
+border-right-style-ltr-source:physical;
+border-right-style-rtl-source:physical;
+border-right-style-value:solid;
+border-right-width-ltr-source:physical;
+border-right-width-rtl-source:physical;
+border-right-width-value:1px;
+border-top-color:#7676F2;
+border-top-style:solid;
+border-top-width:1px;
+color:#7676F2;
+
+}
+td.tit {
+  border-left:5px solid #c00;
+	background-color:#fff;
+	font-weight: bold;
+	min-width: 90px;
+	max-width: 90px;
+	text-align: left;
+}
+td.inp {
+  border:1px dotted #666; font-size:11px; font-family:Arial, Helvetica, sans-serif; padding:2px 5px; text-align: left; color: #0000;
+}
+td.rem {
+	text-align: right;
+}
+
+
+
+.field_with_errors {
+  padding: 2px;
+  background-color:#479190;
+  display: inline-block;
+  width: 80%;
+  height: 98%;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid #479190;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #479190;
+  color: #fff;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  font-family:Arial, Helvetica, sans-serif;
+  list-style: square;
+}
+
+/*Agregando Style de Encabezado */
+
+#header { margin:0 auto; padding:0; width:950px; height:150px; font-family:Arial, Helvetica, sans-serif; background:url(/images/fondo-f.jpg) repeat-x top left;}
+* html body {overflow:hidden;} 
+* html #contenido { height:100%; overflow:auto;}
+
+#h-top { width:950px; height:100px; padding:0; margin:0;}
+#top-logo { float:left; padding:0; margin:0;}
+#top-login { float:right; padding:0; margin:10px 10px 0 0;}
+#top-login td { line-height:20px; font-size:10px; font-weight:bold; text-align:left;}
+#top-login td.flecha { padding:0 20px;}
+#top-login td.blanco, #top-login-l td.blanco { color:#333; background-color:#fff; padding:0 10px;}
+#top-login td.rojo, #top-login-l td.rojo { color:#fff; background-color:#c00; text-align:right; padding:0 10px;}
+#top-login td.negro a, #top-login-l td.negro a { display:block; color:#fff; text-decoration:none; background-color:#000; padding:0 10px;}
+#top-login td.negro a:hover, #top-login-l td.negro a:hover { background-color:#366;}
+#top-links { float:right; padding:0; margin-top:38px; font-size:10px; font-weight:bold;}
+#top-links td { height:25px;}
+#top-links a { display:block; color:#333; text-decoration:none; font-size:10px; background-color:#fff; padding:0 20px; margin:0; line-height:25px;}
+#top-links a:hover { color:#fff; background-color:#c00;}
+#h-bottom { width:951px; padding:0; margin:0;}
+#h-bottom td {
+	height:50px;
+	padding:0;
+	/*background-color: #D50806;*/
+}
+
+/* menu */
+#h-menu { height:50px; margin:0; padding:0; font-size:11px; font-weight:bold; float:right;}
+#h-menu ul { margin:0; padding:0; list-style:none;}
+#h-menu ul a {
+	color:#fff;
+	text-decoration:none;
+	display:block;
+	background-color:#D50806;
+	padding:0 10px;
+}
+#h-menu ul a:hover { background-color:#366;}
+#h-menu ul li { float:left; position:relative; line-height:50px; border-bottom:1px solid #fff; border-right:1px solid #fff;}
+#h-menu ul li.inicia { border-left:1px solid #fff;}
+#h-menu ul li.inicia a { width:100px;}
+#h-menu ul li.docume a { width:100px;}
+#h-menu ul li.manten a { width:100px;}
+#h-menu ul li.busque a { width:100px;}
+#h-menu ul li.iniadq { border-left:1px solid #fff;}
+#h-menu ul li.iniadq a { width:180px;}
+#h-menu ul li.modulo a { width:180px;}
+#h-menu ul li.contra a { width:140px;}
+#h-menu ul li ul { list-style:none; position:absolute; left:0; top:100%; display:none; width:100px; border-top:1px solid #fff;}
+#h-menu ul li ul a { line-height:12px; padding:15px 10px;}
+#h-menu ul li:hover ul { display:block; background-color:#366;}
+#h-menu ul li:hover ul li ul { display:none;}
+#h-menu ul li ul li:hover ul { display:block; position:absolute; left:100px; top:-1px; border-left:1px solid #fff;}
+#h-bottom-l {
+	width:700px;
+	padding:0;
+	margin:0;
+	clear:both;
+	text-align:left;
+	background-color:#737476;
+	height:100px;
+}
+
+/* ini imagen botón para anchor */
+.clear { /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+a.button {
+    background: transparent url('/images/bg_button_a.gif') no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('/images/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+/* fin imagen botón para anchor */
+
+/* estos se ocultan acá pero se muestran en media => print */
+.mostrar_print {
+  display: none;
+}

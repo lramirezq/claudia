@@ -1,0 +1,180 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<table border="1">
+<% @eventos.each do |evento| %>
+<tr bgcolor="#cccccc">
+<td><b>Código de Evento</b></td>
+<td><b><%=evento.codigoEvento %></b></td>
+</tr>
+<tr>
+  <td>Línea</td>
+  <td><%=evento.linea %></td>
+  <td>Estación</td>
+  <td><%=evento.estacion%></td>
+  <td>Fecha Ocurrencia</td>
+  <td><%=evento.fechaOcurrencia%></td>
+  <td>Fecha Registro</td>
+  <td><%=evento.created_at%></td>
+</tr>
+<tr>
+  <td>Usuario Ingreso</td>
+  <td><%=evento.rutCreador %></td>
+  <td>Estado</td>
+  <td><%=evento.estado%></td>
+  <td>Detenidos?</td>
+  <td><%=evento.detenido==true ? "SI" : "NO"%></td>
+  <td>Denunciados</td>
+  <td><%=evento.denunciados==true ? "SI" : "NO"%></td>
+</tr>
+<tr>
+  <td>Procece Policia?</td>
+  <td><%=evento.procedepolicia==true ? "SI" : "NO" %></td>
+  <td>Tiempo Respuesta Policia</td>
+  <td><%=evento.minTmpoRespuesta%></td>
+  <td>Fecha Validación?</td>
+  <td><%=evento.fechaValidacion%></td>
+  <td>Usuario Validador</td>
+  <td><%=evento.rutValidador%></td>
+</tr>
+<tr>
+  <td>Especie</td>
+  <td><%=evento.especie %></td>
+  <td>Lugar de Ocurrencia</td>
+  <td><%=evento.lugarOcurrencia%></td>
+  <td>Delito</td>
+  <td><%=evento.delitoPrincipal%></td>
+  <td>Valor Especie</td>
+  <td><%=evento.valorEspecie%></td>
+</tr>
+<tr>
+  <td>Descripción de Hechos</td>
+  <td><%=evento.descripcionHechos %></td>
+  <td>Detalle Detencióm</td>
+  <td><%=evento.detalleDetencion%></td>
+</tr>    
+<tr>
+<td  bgcolor="#cccccc"><b>VICTIMAS</b></td>
+</tr>
+<% evento.victimas.each do |victima| %>
+  <tr>
+    <td><b>Codigo Victima : <%=victima.codigo%> Tipo :  <%=victima.tipo%></b></td>
+  </tr>
+  <tr>
+    <td>Tipo Identificación </td>
+    <td><%=victima.tipoidentificacion%></td>
+    <td>N° Identificación</td>
+    <td><%=victima.rut%></td>
+    <td>Nombres</td>
+    <td><%=victima.nombres%></td>
+    <td>Apellidos</td>
+    <td><%=victima.apellidos%></td>
+  </tr>
+  <tr>
+    <td>Sexo </td>
+    <td><%=victima.sexo%></td>
+    <td>Cargo</td>
+    <td><%=victima.cargo%></td>
+    <td>Edad</td>
+    <td><%=victima.edad%></td>
+    <td>Telefono</td>
+    <td><%=victima.telefono%></td>
+  </tr>
+  <tr>
+    <td>E-mail </td>
+    <td><%=victima.email%></td>
+    <td>Adicional</td>
+    <td><%=victima.otros%></td>
+    <td>Dirección</td>
+    <td><%=victima.direccion%></td>
+    <td>Región</td>
+    <td><%=victima.region%></td>
+    <td>Comuna</td>
+    <td><%=victima.comuna%></td>
+  </tr>  
+<%end%>
+
+<tr>
+<td  bgcolor="#cccccc"><b>IMPUTADOS</b></td>
+</tr>
+<% evento.imputados.each do |imputado| %>
+  <tr>
+    <td><b>Tipo :  <%=imputado.tipo%></b></td>
+  </tr>
+  <tr>
+    <td>Tipo Identificación </td>
+    <td><%=imputado.tipoidentificacion%></td>
+    <td>N° Identificación</td>
+    <td><%=imputado.rut%></td>
+    <td>Nombres</td>
+    <td><%=imputado.nombres%></td>
+    <td>Apellidos</td>
+    <td><%=imputado.apellidos%></td>
+  </tr>
+  <tr>
+    <td>Sexo </td>
+    <td><%=imputado.sexo%></td>
+    <td>Cargo</td>
+    <td><%=imputado.cargo%></td>
+    <td>Edad</td>
+    <td><%=imputado.edad%></td>
+    <td>Telefono</td>
+    <td><%=imputado.telefono%></td>
+  </tr>
+  <tr>
+    <td>E-mail </td>
+    <td><%=imputado.email%></td>
+    <td>Adicional</td>
+    <td><%=imputado.otros%></td>
+    <td>Dirección</td>
+    <td><%=imputado.direccion%></td>
+    <td>Región</td>
+    <td><%=imputado.region%></td>
+    <td>Comuna</td>
+    <td><%=imputado.comuna%></td>
+  </tr>  
+<%end%>
+
+<tr>
+<td  bgcolor="#cccccc"><b>TESTIGOS</b></td>
+</tr>
+<% evento.testigos.each do |testigo| %>
+  <tr>
+    <td><b>Tipo :  <%=testigo.tipo%></b></td>
+  </tr>
+  <tr>
+    <td>Tipo Identificación </td>
+    <td><%=testigo.tipoidentificacion%></td>
+    <td>N° Identificación</td>
+    <td><%=testigo.rut%></td>
+    <td>Nombres</td>
+    <td><%=testigo.nombres%></td>
+    <td>Apellidos</td>
+    <td><%=testigo.apellidos%></td>
+  </tr>
+  <tr>
+    <td>Sexo </td>
+    <td><%=testigo.sexo%></td>
+    <td>Cargo</td>
+    <td><%=testigo.cargo%></td>
+    <td>Edad</td>
+    <td><%=testigo.edad%></td>
+    <td>Telefono</td>
+    <td><%=testigo.telefono%></td>
+  </tr>
+  <tr>
+    <td>E-mail </td>
+    <td><%=testigo.email%></td>
+    <td>Adicional</td>
+    <td><%=testigo.adicional%></td>
+    <td>Dirección</td>
+    <td><%=testigo.direccion%></td>
+    <td>Región</td>
+    <td><%=testigo.region%></td>
+    <td>Comuna</td>
+    <td><%=testigo.comuna%></td>
+  </tr>  
+<%end%>
+<%end%>
+
+
+
+</table>

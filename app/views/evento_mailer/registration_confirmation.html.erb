@@ -1,0 +1,110 @@
+<div><img src="http://sglea.grupotc.cl/images/metrosantiago.jpg" width="100" height="98" /></div>
+<div style="\ font-family: Arial, Helvetica, sans-serif; font-size: 12px;	font-weight: bold; 	color: #FFF; 	background-color: #F00; 	border-letf: 1px; 	border-color:#666 solid;	padding-left: 3px; \">Se ha generado un nuevo Evento</div>
+<div id="datos">
+  <table  cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+    <td colspan="8" style="\left: auto; padding-top: 3px; 	padding-left: 3px; color: #000; font-weight: bold; background-color: #CCC; font-family:Arial, Helvetica, sans-serif; font-size:12px \" >
+        DATOS DEL EVENTO
+    </td>
+    </tr>
+    <tr  style="\font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \">
+      <td>CÓDIGO EVENTO</td>
+      <td style="\font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \"><%= @evento.codigoEvento %></td>
+      <td>LÍNEA</td>
+      <td style="\font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \"><%= @evento.linea%></td>
+      <td>ESTACIÓN</td>
+      <td style="\font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \"><%= @evento.estacion %></td>
+      <td>FECHA</td>
+      <td style="\font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \"><%= @evento.fechaOcurrencia.strftime('%Y-%m-%d %H:%M') %></td>
+    </tr>
+    <tr>
+      <td colspan="8" style="\left: auto; padding-top: 3px; 	padding-left: 3px; color: #000; font-weight: bold; background-color: #CCC; font-family:Arial, Helvetica, sans-serif; font-size:12px \" >
+        VICTIMAS
+      </center></td>
+    </tr>
+    <% @evento.victimas.each do |victima|%>
+    <tr style="\font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \">
+      <td>CÓDIGO VÍCTIMA</td>
+      <td><%=victima.codigo%></td>
+      <td> NOMBRE</td>
+      <td><%= victima.nombres + " " + victima.apellidos%></td>
+      <td><%= victima.tipoidentificacion%></td>
+      <td><%= victima.rut%></td>
+      <td>TELÉFONO</td>
+      <td><%= victima.telefono%></td>
+    </tr>
+    <%end%>
+    <tr bgcolor="#fff">
+      <td colspan="8" style="\left: auto; padding-top: 3px; 	padding-left: 3px; color: #000; font-weight: bold; background-color: #CCC; font-family:Arial, Helvetica, sans-serif; font-size:12px \">
+        IMPUTADOS
+      </center></td>
+    </tr>
+    <% @evento.imputados.each do |imputado|%>
+    <tr style="\font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \">
+      <td>NOMBRE</td>
+      <td><%= imputado.nombres%> <%=imputado.apellidos%></td>
+      <td><%= imputado.tipoidentificacion%> </td>
+      <td><%= imputado.rut%></td>
+      <td >TELÉFONO</td>
+      <td><%= imputado.telefono%></td>
+      <td>APODO</td>
+      <td><%=imputado.alias%></td>
+    </tr>
+    <%end%>
+    <tr bgcolor="#fff">
+      <td colspan="8" style="\left: auto; padding-top: 3px; 	padding-left: 3px; color: #000; font-weight: bold; background-color: #CCC; font-family:Arial, Helvetica, sans-serif; font-size:12px \">
+        TESTIGOS
+      </center></td>
+    </tr>
+    <% @evento.testigos.each do |testigo|%>
+    <tr style="\font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \">
+      <td>NOMBRE</td>
+      <td><%= testigo.nombres%> <%=testigo.apellidos%></td>
+      <td><%= testigo.tipoidentificacion %></td>
+      <td><%= testigo.rut%></td>
+      <td >TELÉFONO</td>
+      <td><%= testigo.telefono%></td>
+    </tr>
+    <%end%>
+    
+    <tr>
+      <td colspan="8" style="\left: auto; padding-top: 3px; 	padding-left: 3px; color: #000; font-weight: bold; background-color: #CCC; font-family:Arial, Helvetica, sans-serif; font-size:12px \">
+        DELITO
+      </center></td>
+    </tr>
+    <tr>
+      <td colspan="8" style="\ font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \">
+        <%= @evento.delitoPrincipal %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="8" style="\ font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \">
+        <%= @evento.descripcionHechos %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="8" style="\left: auto; padding-top: 3px; 	padding-left: 3px; color: #000; font-weight: bold; background-color: #CCC; font-family:Arial, Helvetica, sans-serif; font-size:12px \">
+        ASISTENCIA 24 / 7
+      </center></td>
+    </tr>
+    <tr>
+      <td colspan="8" style="\ font-family: Arial, Helvetica, sans-serif; font-size: 11px; 	font-style: normal; 	font-weight: normal; 	color: #000; 	padding-bottom: 5px; 	padding-top: 5px; \">
+          <% if not @evento.asistencia.nil? %>
+            <%= "SE SOLICITA ASISTENCIA "  %>
+            <b><%= @evento.asistencia.tipo %></b>
+          <%else%>
+            <%= "NO SE SOLICITA ASISTENCIA "  %>
+          <%end%>
+      </td>
+    </tr>
+  </table>
+</div>
+<div style="\ font-family: Arial, Helvetica, sans-serif; 	font-size: 12px; 	font-weight: bold; 	color: #FFF;	background-color: #F00;	padding-bottom: 5px; 	padding-left: 3px; \">
+Para poder validar los datos ingresados, siga el siguiente enlace.
+<a href="<%= @root_url %><%= validate_evento_path(@evento) %>">
+<%= @root_url %><%= validate_evento_path(@evento) %></a>
+</div>
+
+<div style="\ font-family: Arial, Helvetica, sans-serif; font-size: 9px; color: #000;	background-color: #CCC; 	padding-left: 3px; \">Desarrollado por Grupo TC</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

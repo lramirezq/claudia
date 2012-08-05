@@ -1,0 +1,50 @@
+var rut = '#' + "<%=params[:control]%>";
+var tipo = rut.replace('rut', 'tipo');
+var nombres = rut.replace('rut', 'nombres');
+var apellidos = rut.replace('rut', 'apellidos');
+var alias = rut.replace('rut', 'alias');
+var pandilla = rut.replace('rut', 'pandilla');
+var cargo = rut.replace('rut', 'cargo');
+var sexo = rut.replace('rut', 'sexo');
+var edad = rut.replace('rut', 'edad');
+var direccion = rut.replace('rut', 'direccion');
+var region = rut.replace('rut', 'region');
+var comuna = rut.replace('rut', 'comuna');
+var telefono = rut.replace('rut', 'telefono');
+var email = rut.replace('rut', 'email');
+var otros = rut.replace('rut', 'otros');
+
+<% if @imputados.nil? %>
+  $(tipo).val("")    
+  $(nombres).val("")
+  $(apellidos).val("")
+  $(alias).val("")
+  $(pandilla).val("")
+  $(cargo).val("")
+  $(sexo).val("")
+  $(edad).val("")
+  $(direccion).val("")
+  $(region).val("")
+  $(comuna).val("")
+  $(telefono).val("")
+  $(email).val("")
+  $(otros).val("")
+
+<%else%>
+
+  $(tipo).val("<%= @imputados.tipo %>")    
+  $(nombres).val("<%= @imputados.nombres %>")
+  $(apellidos).val("<%= @imputados.apellidos %>")
+  $(alias).val("<%= @imputados.alias %>")
+  $(pandilla).val("<%= @imputados.pandilla %>")
+  $(cargo).val("<%= @imputados.cargo %>")
+  $(sexo).val("<%= @imputados.sexo %>")
+  $(edad).val("<%= @imputados.edad %>")
+  $(direccion).val("<%= @imputados.direccion %>")
+  $(region).val("<%= @imputados.region %>")
+  $(comuna).val("<%= @imputados.comuna %>")
+  $(telefono).val("<%= @imputados.telefono %>")
+  $(email).val("<%= @imputados.email %>")
+  $(otros).val("<%= @imputados.otros %>")
+
+<%end%>

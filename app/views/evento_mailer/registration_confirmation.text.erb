@@ -1,0 +1,8 @@
+Se ha generado un Nuevo Evento, 
+
+Código de evento: <%= @evento.codigoEvento.to_s %>
+
+Para poder validar los datos ingresados, siga el siguiente enlace.
+
+<%= @root_url %><%= validate_evento_path(@evento) %>
+

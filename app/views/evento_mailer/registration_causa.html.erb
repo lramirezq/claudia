@@ -1,0 +1,8 @@
+<div><img src="http://sglea.grupotc.cl/images/metrosantiago.jpg" width="100" height="98" /></div>
+<p> Se ha Actualizado la causa N° <%= @causa.id.to_s %> </p>
+<p> Para revisar siga el siguiente link </p>
+<p>
+  <a href="<%= @root_url %><%= edit_causa_path(@causa) %>">
+    <%= @root_url %><%= edit_causa_path(@causa) %>
+  </a>
+</p>

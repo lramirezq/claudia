@@ -1,0 +1,85 @@
+var rut = '#' + "causa_victima_attributes_rut";
+var tipo = rut.replace('rut', 'tipo');
+var nombres = rut.replace('rut', 'nombres');
+var apellidos = rut.replace('rut', 'apellidos');
+var cargo = rut.replace('rut', 'cargo');
+var sexo = rut.replace('rut', 'sexo');
+var edad = rut.replace('rut', 'edad');
+var direccion = rut.replace('rut', 'direccion');
+var region = rut.replace('rut', 'region');
+var comuna = rut.replace('rut', 'comuna');
+var telefono = rut.replace('rut', 'telefono');
+var email = rut.replace('rut', 'email');
+var otros = rut.replace('rut', 'otros');
+var tipoidentificacion = rut.replace('rut','tipoidentificacion');
+var delito = "#causa_delito";
+
+<% if @victimas.nil? %>
+  $(tipo).val("")    
+  $(nombres).val("")
+  $(apellidos).val("")
+  $(cargo).val("")
+  $(sexo).val("")
+  $(edad).val("")
+  $(direccion).val("")
+  $(region).val("")
+  $(comuna).val("")
+  $(telefono).val("")
+  $(email).val("")
+  $(otros).val("")
+  $(tipoidentificacion).val("")
+
+<%else%>
+  $(tipoidentificacion).val("<%= @victimas.tipoidentificacion %>")
+  $(rut).val("<%= @victimas.rut %>")
+  $(tipo).val("<%= @victimas.tipo %>")    
+  $(nombres).val("<%= @victimas.nombres %>")
+  $(apellidos).val("<%= @victimas.apellidos %>")
+  $(cargo).val("<%= @victimas.cargo %>")
+  $(sexo).val("<%= @victimas.sexo %>")
+  $(edad).val("<%= @victimas.edad %>")
+  $(direccion).val("<%= @victimas.direccion %>")
+  $(region).val("<%= @victimas.region %>")
+  $(comuna).val("<%= @victimas.comuna %>")
+  $(telefono).val("<%= @victimas.telefono %>")
+  $(email).val("<%= @victimas.email %>")
+  $(otros).val("<%= @victimas.otros %>")
+  $(delito).val("<%= @victimas.evento.delitoPrincipal %>")
+  
+  <% @victimas.evento.imputados.each do |imputado| %>
+    var rut = '#' + "causa_imputados_attributes_0_rut";
+    var tipo = rut.replace('rut', 'tipo');
+    var nombres = rut.replace('rut', 'nombres');
+    var apellidos = rut.replace('rut', 'apellidos');
+    var cargo = rut.replace('rut', 'cargo');
+    var sexo = rut.replace('rut', 'sexo');
+    var edad = rut.replace('rut', 'edad');
+    var direccion = rut.replace('rut', 'direccion');
+    var region = rut.replace('rut', 'region');
+    var comuna = rut.replace('rut', 'comuna');
+    var telefono = rut.replace('rut', 'telefono');
+    var email = rut.replace('rut', 'email');
+    var otros = rut.replace('rut', 'otros');
+    var alias = rut.replace('rut', 'alias');
+    var pandilla = rut.replace('rut', 'pandilla');
+    var tipoidentificacion = rut.replace('rut','tipoidentificacion'); 
+  
+  $(tipoidentificacion).val("<%= imputado.tipoidentificacion %>")
+  $(rut).val("<%= imputado.rut %>")
+  $(tipo).val("<%= imputado.tipo %>")    
+  $(nombres).val("<%= imputado.nombres %>")
+  $(apellidos).val("<%= imputado.apellidos %>")
+  $(cargo).val("<%= imputado.cargo %>")
+  $(sexo).val("<%= imputado.sexo %>")
+  $(edad).val("<%= imputado.edad %>")
+  $(direccion).val("<%= imputado.direccion %>")
+  $(region).val("<%= imputado.region %>")
+  $(comuna).val("<%= imputado.comuna %>")
+  $(telefono).val("<%= imputado.telefono %>")
+  $(email).val("<%= imputado.email %>")
+  $(otros).val("<%= imputado.otros %>")
+  $(alias).val("<%= imputado.alias %>")
+  $(pandilla).val("<%= imputado.pandilla %>")  
+  <%end%>
+  
+<%end%>

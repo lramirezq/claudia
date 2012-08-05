@@ -1,0 +1,20 @@
+var comunas = new Array();
+
+<% for comuna in @comunas -%>
+comunas.push(new Array("<%= @regiones[comuna.misc.to_i - 1].valor %>", "<%=h comuna.valor %>"));
+<% end -%>
+  
+function regionSelected(region_select) {
+  regionid = '#' + region_select.id
+  comunaid = regionid.replace('region', 'comuna');
+  options = $(comunaid)[0].options;
+  options.length = 1;
+
+  region = $(regionid).val();
+
+  $.each(comunas, function(i, comuna) {
+    if (comuna[0] == region) {
+      options[options.length] = new Option(comuna[1], comuna[1]);
+    }
+  });
+}

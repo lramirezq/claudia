@@ -1,0 +1,31 @@
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  %table.sglea
+    %tr
+      %td.tit Nombre
+      %td.inp= f.text_field :nombre
+    %tr
+      %td.tit Login
+      %td.inp= f.text_field :login
+    %tr
+      %td.tit Password
+      %td.inp= f.password_field :password
+    %tr
+      %td.tit Confirmar Password
+      %td.inp= f.password_field :password_confirmation
+    %tr
+      %td.tit Roles
+      %td.inp
+        - for role in Role.all
+          %p
+            = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role), { :id => "user_role_ids_" + role.id.to_s }
+            %label{:for => "user_role_ids_#{role.id}"}= role.nombre
+    %tr
+      %td= f.submit

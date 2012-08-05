@@ -1,0 +1,20 @@
+var estaciones = new Array();
+
+<% for estacion in @estaciones -%>
+estaciones.push(new Array("<%=h estacion.misc %>", "<%=h estacion.valor %>"));
+<% end -%>
+  
+function lineaSelected(linea_select) {
+  lineaid = '#' + linea_select.id;
+  estacid = lineaid.replace('linea', 'estacion');
+  options = $(estacid)[0].options;
+  options.length = 1;
+  
+  linea = $(lineaid).val();
+  
+  $.each(estaciones, function(i, estacion) {
+    if (estacion[0] == linea) {
+      options[options.length] = new Option(estacion[1], estacion[1]);
+    }
+  });
+}

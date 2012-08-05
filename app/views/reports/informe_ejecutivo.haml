@@ -1,0 +1,210 @@
+- if @fecini.blank?
+  %h1= titulo "Generar Reporte Ejecutivo"
+  - form_tag report_informe_ejecutivo_path, :method => :get do
+    %table.sglea
+      %tr
+        %td.tit Rango de fecha
+        %td.inp
+          desde
+          = text_field_tag :fecini
+          hasta
+          = text_field_tag :fecfin
+          = submit_tag "Generar"
+  :javascript
+    $('#fecini').datetimepicker({
+      timeText: 'Tiempo',
+      hourText: 'Hora',
+      minuteText: 'Min',
+      stepMinute: 1,
+      currentText: 'Fecha hora actual'
+    });
+    $('#fecfin').datetimepicker({
+      timeText: 'Tiempo',
+      hourText: 'Hora',
+      minuteText: 'Min',
+      stepMinute: 1,
+      currentText: 'Fecha hora actual'
+    });
+- else
+
+    
+  %h1= titulo "Reporte Ejecutivo #{@fecini} - #{@fecfin}"
+
+  .ocultar_print.txt-cen
+    = link_to 'Descargar reporte (PDF)', :format => :pdf, :fecini => @fecini, :fecfin => @fecfin
+
+  .mostrar_print.txt-cen
+    %p Generado por: #{current_user.nombre}
+    %p Fecha reporte: #{Time.new}
+
+  %h2 Eventos Ingresados
+  %p
+    Durante el período de consulta
+    %b (#{@fecini} | #{@fecfin})
+    se han ingresado los siguientes eventos según tipo de delito:
+  
+  - if @eventos_total == 0
+    .txt-cen [No hay datos a mostrar]
+  - else
+    .txt-cen= image_tag @eventos_chart
+    %table.sglea
+      %tr
+        %td.titg Delito
+        %td.titg Cantidad
+        %td.titg Porcentaje
+      - @eventos.each do |evento|
+        %tr
+          %td.inp= evento.delito
+          %td.inp= evento.cantidad
+          %td.inp #{evento.porcentaje} %
+      %tr
+        %td.inp TOTAL
+        %td.inp= @eventos_total
+        %td.inp 100%
+
+  %h2.pagebreak Tipo de Víctima
+  %p
+    Durante el período de consulta
+    %b (#{@fecini} | #{@fecfin})
+    se han ingresado los siguientes tipos de víctima en los delitos que se indican:
+  - if @totalvictimas[:total] == 0
+    .txt-cen [No hay datos a mostrar]
+  - else
+    .txt-cen= image_tag @totalvictimas_chart
+    %table.sglea
+      %tr
+        %td.titg Delito
+        - @totalvictimas.each do |k, v|
+          %td.titg= k
+      - @totaldelitos.each do |k, v|
+        %tr
+          %td.inp= k
+          - @totalvictimas.each do |tk, tv|
+            %td.inp= v[tk]
+      %tr
+        %td.inp TOTAL
+        - @totalvictimas.each do |k, v|
+          %td.inp= v
+
+
+  %h2.pagebreak Causas Gestionadas
+  %p
+    Del total de eventos ingresados durante el período de consulta
+    %b (#{@fecini} | #{@fecfin})
+    el detalle de la gestión de las causas generadas es el siguiente:
+  - if @causas_total == 0
+    .txt-cen [No hay datos a mostrar]
+  - else
+    %table.sglea
+      %tr
+        %td.titg Estado Causa
+        %td.titg Cantidad
+        %td.titg Porcentaje
+      - @causas.each do |c|
+        %tr
+          %td.inp= c.estado
+          %td.inp= c.cantidad
+          %td.inp #{c.porcentaje} %
+      %tr
+        %td.inp TOTAL
+        %td.inp= @causas_total
+        %td.inp 100%
+  - if @totalgeneral == 0
+    .txt-cen [Sin detalle causas terminadas]
+  - else
+    %table.sglea
+      %tr
+        %td.titg DETALLE CAUSAS TERMINADAS
+        %td.titg Cantidad
+        %td.titg Porcentaje
+        - if @terminoirregular_total != 0
+          %tr
+            %td.titg{:colspan => "3"} TÉRMINO IRREGULAR
+          %tr
+            - @terminoirregular.each do |t|
+              %tr
+                %td.inp= t.razon
+                %td.inp= t.cantidad
+                %td.inp #{t.porcentaje} %
+          %tr
+            %td.inp TOTAL
+            %td.inp= @terminoirregular_total
+            %td.inp 100%
+        - if @terminofiscalia_total != 0
+          %tr
+            %td.titg{:colspan => "3"} TÉRMINO FISCALÍA
+          %tr
+            - @terminofiscalia.each do |t|
+              %tr
+                %td.inp= t.razon
+                %td.inp= t.cantidad
+                %td.inp #{t.porcentaje} %
+          %tr
+            %td.inp TOTAL
+            %td.inp= @terminofiscalia_total
+            %td.inp 100%
+        - if @terminojudicial_total != 0
+          %tr
+            %td.titg{:colspan => "3"} TÉRMINO JUDICIAL
+          %tr
+            - @terminojudicial.each do |t|
+              %tr
+                %td.inp= t.razon
+                %td.inp= t.cantidad
+                %td.inp #{t.porcentaje} %
+          %tr
+            %td.inp TOTAL
+            %td.inp= @terminojudicial_total
+            %td.inp 100%
+        %tr
+          %td.inp TOTAL GENERAL
+          %td.inp= @totalgeneral
+          %td.inp
+
+  %h2.pagebreak Detalle de Condenas en Causas terminadas por sentencias condenatorias
+  %p
+    Del total de causas terminadas por sentencia condenatoria durante el período de consulta
+    %b (#{@fecini} | #{@fecfin})
+    el detalle de las condenas (en relación a la pena principal) obtenidas es el siguiente:
+  - if @condenasterminadas_total == 0
+    .txt-cen [No hay datos a mostrar]
+  - else
+    .txt-cen= image_tag @condenasterminadas_chart
+    %table.sglea
+      %tr
+        %td.titg Condena
+        %td.titg Cantidad
+        %td.titg Porcentaje
+      - @condenasterminadas.each do |c|
+        %tr
+          %td.inp= c.condena
+          %td.inp= c.cantidad
+          %td.inp #{c.porcentaje} %
+      %tr
+        %td.inp TOTAL
+        %td.inp= @condenasterminadas_total
+        %td.inp 100%
+
+  %h2.pagebreak Detalle de cumplimiento de Condenas Privativas de Libertad
+  %p
+    Del total de causas terminadas por sentencia condenatoria privativa de libertad durante el período de consulta
+    %b (#{@fecini} | #{@fecfin})
+    el detalle del cumplimiento de las condenas obtenidas es el siguiente:
+  - if @condenasprivativas_total == 0
+    .txt-cen [No hay datos a mostrar]
+  - else
+    .txt-cen= image_tag @condenasprivativas_chart
+    %table.sglea
+      %tr
+        %td.titg Condena
+        %td.titg Cantidad
+        %td.titg Porcentaje
+      - @condenasprivativas.each do |c|
+        %tr
+          %td.inp= c.beneficio.blank? ? 'Pena Efectiva' : c.beneficio
+          %td.inp= c.cantidad
+          %td.inp #{c.porcentaje} %
+      %tr
+        %td.inp TOTAL
+        %td.inp= @condenasprivativas_total
+        %td.inp 100%

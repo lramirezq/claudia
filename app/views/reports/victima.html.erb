@@ -1,0 +1,113 @@
+<h2 class="titulo01">
+  VÍCTIMA
+</h2>
+<form action="victimas">
+  <table class="sglea">
+	<tr>
+    	<td class="tit">Tipo Id</td>
+        <td class="inp">
+          <% @tipoids = Mantenedor.tipoidentificacions %>
+          <%= select_tag(:tipoidentificacion,  options_from_collection_for_select(@tipoids, :valor, :valor), {:include_blank => true, :onchange => 'tipo_id(this);'} )%>
+        </td>
+	    <td class="tit">N°</td>
+    	<td class="inp"><input id="rut" name="rut" size="30" type="text"></td>
+        <td class="tit">Tipo Víctima</td>
+        <td class="inp">
+          <% @tipovictimas = Mantenedor.tipovictimas %>
+          <%= select_tag(:tipovictima,  options_from_collection_for_select(@tipovictimas, :valor, :valor), {:include_blank => true} )%>
+        </td>
+     </tr>
+     <tr>
+		 <td class="tit">Nombres</td>
+         <td class="inp"><input id="nombres" name="nombres" size="30" type="text"></td>
+         <td class="tit">Apellidos</td>
+         <td class="inp"><input id="apellidos" name="apellidos" size="30" type="text"></td> 
+         <td class="inp"></td>
+         <td class="inp"></td>
+     </tr>
+     <tr>
+         <td class="tit">Sexo</td>
+         <td class="inp">
+          <% @sexos = Mantenedor.tiposexos %>
+          <%= select_tag(:sexo,  options_from_collection_for_select(@sexos, :valor, :valor), {:include_blank => true} )%>
+        </td>
+         <td class="tit">Dirección</td>
+         <td class="inp" colspan="3"><input id="direccion" name="direccion" size="100" type="text"></td>
+      </tr>
+      <tr>
+         <td class="tit">Región</td>
+         <td class="inp">
+          <% @regiones = Mantenedor.regiones %>
+          <%= select_tag(:region,  options_from_collection_for_select(@regiones, :valor, :valor), {:include_blank => true} )%>
+         </td>
+         <td class="tit">Comuna</td>
+         <td class="inp">
+          <% @comunas = Mantenedor.comunas %>
+          <%= select_tag(:comuna,  options_from_collection_for_select(@comunas, :valor, :valor), {:include_blank => true} )%>
+         </td>
+         <td class="tit">Teléfono</td>
+         <td class="inp"><input id="telefono" name="telefono" size="30" type="text"></td>
+       </tr>
+       <tr>
+         <td class="tit">E-Mail</td>
+         <td class="inp"><input id="email" name="email" size="30" type="text"></td>
+         <td class="inp"></td>
+         <td class="inp"></td>
+         <td class="inp"></td>
+         <td class="inp"></td>
+       </tr>
+       <tr>
+         <td class="tit">Información Adicional</td>
+         <td class="inp" colspan="4"><textarea cols="50" id="otros" name="otros" rows="5"></textarea></td>
+       </tr>
+      <tr>
+        <td colspan="8">
+          <div align="center"><input type="submit" value="Buscar !"></div>
+        </td>
+    </tr>
+       </table>
+</form>
+
+<br>
+<!-- Ahora Resultado aca -->
+
+<h2>Resultados</h2>
+
+
+<table class='sglea datos'>
+  <tr>
+    <td class="titg"> Nombre Victima</td>
+    <td class="titg"> Código Evento </td>
+    <td class="titg"> Fecha Ocurrencia </td>
+    <td class="titg"> Fecha Validación </td>
+    <td class="titg"> Estación </td>
+    <td class="titg"> Usuario Validador</td>
+    <td class="titg"> Estado</td>
+    <td class="titg"> Delito</td>
+    <td class="titg"> Procede policia?</td>
+    <td class="titg"> Especie</td>
+    <td class="titg"> Detalle Detención</td>
+    <td class="titg"> Acciones</td>
+  </tr>
+  <% if @victimas
+    @victimas.each do |victima|%> 
+      
+      
+      <tr>
+      <td><%= victima.nombres + " " +victima.apellidos%>        </td>
+        <td><%= victima.evento.codigoEvento %></td>
+        <td><%= victima.evento.fechaOcurrencia==nil ?  "" : victima.evento.fechaOcurrencia.strftime('%Y-%m-%d %H:%M') %></td>
+        <td><%= victima.evento.fechaValidacion==nil ?  "" : victima.evento.fechaValidacion.strftime('%Y-%m-%d %H:%M') %></td>
+        <td><%= victima.evento.estacion %></td>
+        <td><%= victima.evento.rutValidador %></td>
+        <td><%= victima.evento.estado %></td>
+        <td><%= victima.evento.delitoPrincipal %></td>
+        <td><%= victima.evento.procedepolicia ? "SI" : "NO" %></td>
+        <td><%= victima.evento.especie %></td>
+        <td><%= victima.evento.detalleDetencion %></td>
+        <td><%= link_to image_tag("ver.png"), victima.evento %></td>
+    </tr>
+<%end%>
+<%end%>
+
+</table>

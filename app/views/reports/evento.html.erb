@@ -1,0 +1,156 @@
+<h2> FILTRO DE EVENTO </h2>
+<form action="eventos">
+  <table class='sglea'>
+    <tr>
+      <td class='tit'>Número Evento </td>
+      <td class='inp'><input name="codigoEvento" id ="codigoEvento" type="text"></td>
+      <td class='inp'>&nbsp;</td>
+      <td class='tit'>Linea </td>
+      <td class='inp'><% @linea = Mantenedor.lineas %>
+      <%= select_tag(:linea,  options_from_collection_for_select(@linea, :valor, :valor),  {:include_blank => true} )%></td>
+      <td class='inp'>&nbsp;</td>
+      <td class='tit'>Estación</td>
+      <td class='inp'><% @estaciones = Mantenedor.estaciones %>
+      <%= select_tag(:estacion,  options_from_collection_for_select(@estaciones, :valor, :valor), {:include_blank => true} )%></td>
+    </tr>
+  
+    <tr>
+      <td class='tit'>Fecha Ocurrencia</td>
+      <td class='inp'><input id="fechaOcurrencia1" name="fechaOcurrencia1" size="16" type="text"  />
+        -
+        <input id="fechaOcurrencia2" name="fechaOcurrencia2" size="16" type="text"  /></td>
+      <td class='inp'> &nbsp;</td>
+      <td class='tit'>Fecha Validación</td>
+      <td class='inp'><input id="fechaValidacion" name="fechaValidacion" size="16" type="text"  /></td>
+      <td class='inp'>&nbsp;</td>
+      <td class='tit'>Rut Validador</td>
+      <td class='inp'><script type='text/javascript'>
+            //<![CDATA[
+              $('#fechaOcurrencia1').datetimepicker({
+                timeText: 'Tiempo',
+                hourText: 'hora',
+                minuteText: 'min',
+                stepMinute: 1,
+                currentText: 'Fecha y hora actual'
+              });
+            //]]>
+          </script>
+            <script type='text/javascript'>
+            //<![CDATA[
+              $('#fechaOcurrencia2').datetimepicker({
+                timeText: 'Tiempo',
+                hourText: 'hora',
+                minuteText: 'min',
+                stepMinute: 1,
+                currentText: 'Fecha y hora actual'
+              });
+            //]]>
+          </script>      <input type="text" id="rutValidador" name="rutValidador"></td>
+    </tr>
+  <tr>
+    <td class='tit'>Lugar de Ocurrencia</td>
+    <td class='inp'><% @lugares = Mantenedor.lugares %>
+      <%= select_tag(:lugarOcurrencia,  options_from_collection_for_select(@lugares, :valor, :valor), {:include_blank => true} )%></td>
+    <td class='inp'>&nbsp;</td>
+    <td class='tit'>Estado</td>
+    <td class='inp'><select id="estado" name = "estado">
+      <option value="">Elija Estado</option>
+      <option value="CREADO">CREADO</option>
+      <option value="VALIDADO">VALIDADO</option>
+    </select></td>
+    <td class='inp'>&nbsp;</td>
+    <td class='inp'>&nbsp;</td>
+    <td class='inp'><script type='text/javascript'>
+              //<![CDATA[T
+                $('#fechaValidacion').datetimepicker({
+                  timeText: 'Tiempo',
+                  hourText: 'hora',
+                  minuteText: 'min',
+                    stepMinute: 1,
+                  currentText: 'Fecha y hora actual'
+                });
+              //]]>
+            </script>    </td>
+  </tr>
+  <tr>
+    <td class='tit'>Delito</td>
+    <td colspan="4" class='inp'><% @delitos = Mantenedor.delitos %>
+      <%= select_tag(:delitoPrincipal,  options_from_collection_for_select(@delitos, :valor, :valor), {:include_blank => true} )%></td>
+    <td class='inp'>&nbsp;</td>
+    <td class='tit'>Especie</td>
+    <td class='inp'><% @especies = Mantenedor.especies %>
+      <%= select_tag(:especie,  options_from_collection_for_select(@especies, :valor, :valor), {:include_blank => true} )%></td>
+  </tr>
+  <tr>
+    <td class='tit'>Valor Especie</td>
+    <td class='inp'><% @valor = Mantenedor.valor_especies %>
+      <%= select_tag(:valorEspecie,  options_from_collection_for_select(@valor, :valor, :valor), {:include_blank => true} )%></td>
+    <td class='inp'>&nbsp;</td>
+    <td class='tit'>Detalle Detención</td>
+    <td class='inp'><% @detenciones = Mantenedor.detenciones %>
+      <%= select_tag(:valorEspecie,  options_from_collection_for_select(@detenciones, :valor, :valor), {:include_blank => true} )%></td>
+    <td class='inp'>&nbsp;</td>
+    <td class='inp'>&nbsp;</td>
+    <td class='inp'> &nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="8"><div align="center">
+      <input type="submit" value="Buscar !">
+    </div></td>
+    </tr>
+</table>
+</form>
+
+
+<br>
+
+<h2>Resultados</h2>
+
+
+<table class='sglea datos'>
+  <tr>
+    <td class="titg"> Código Evento </td>
+    <td class="titg"> Fecha Ocurrencia </td>
+	<td class="titg"> Hora Ocurrencia </td>
+    <td class="titg"> Fecha Validación </td>
+    <td class="titg"> Estación </td>
+    <td class="titg"> Usuario Validador</td>
+    <td class="titg"> Estado</td>
+    <td class="titg"> Delito</td>
+    <td class="titg"> Procede policia?</td>
+    <td class="titg"> Especie</td>
+    <td class="titg"> Detalle Detención</td>
+    <td class="titg"> Adjunto</td>
+    <td class="titg"> Acciones</td>
+  </tr>
+  <% if @eventos 
+     @eventos.each do |evento| %>
+      <tr>
+        <td><%= evento.codigoEvento %></td>
+        <td><%= evento.fechaOcurrencia==nil ?  "" : evento.fechaOcurrencia.strftime('%d-%m-%Y') %></td>
+		<td><%= evento.fechaOcurrencia==nil ?  "" : evento.fechaOcurrencia.strftime('%H:%M') %></td>
+        <td><%= evento.fechaValidacion==nil ?  "" : evento.fechaValidacion.strftime('%Y-%m-%d %H:%M') %></td>
+        <td><%= evento.estacion %></td>
+        <td><%= evento.rutValidador %></td>
+        <td><%= evento.estado %></td>
+        <td><%= evento.delitoPrincipal %></td>
+        <td><%= evento.procedepolicia ? "SI" : "NO" %></td>
+        <td><%= evento.especie %></td>
+        <td><%= evento.detalleDetencion %></td>
+        <% if evento.adjunto.to_s=="/adjuntos/original/missing.png" %>
+          <td> No Adjunto </td>
+        <% else %>
+          <td><%= link_to image_tag("descargar.png"), evento.adjunto.url %> </td>
+        <% end %>
+        <td>
+          <% if can? :read, evento %>
+            <%= link_to image_tag("ver.png"), evento %>
+          <%end %>
+          
+          
+        </td>
+
+    </tr>
+<%end%>
+<%end%>
+</table>
