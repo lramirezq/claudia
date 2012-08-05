@@ -6,7 +6,6 @@ GIT
     authlogic (2.1.3)
       activesupport
 
-
 GIT
   remote: git://github.com/railsdog/searchlogic.git
   revision: 894ae45488d3813e4261e0fc534e59ac7fcd696f

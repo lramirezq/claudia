@@ -4,7 +4,9 @@ class HomeController < ApplicationController
   # página de inicio
   def index
     if not current_user
+      puts "Llegue aqui !"
       @user_session = UserSession.new
+      puts "Genere instancia User !"
     end
   end
 
