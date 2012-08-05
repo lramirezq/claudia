@@ -5,9 +5,15 @@ gem 'rails', '3.0.3'
 
 # ambiente desarrollo
 group :development, :test do
-  #gem 'pg'
+  gem 'pg'
   #gem 'sqlite3-ruby', :require => 'sqlite3'
 end
+
+# ambiente test
+group :test do
+ gem 'sqlite3-ruby', :require => 'sqlite3'
+end
+
 
 # ambiente producción
 group :production do
