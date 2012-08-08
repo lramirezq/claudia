@@ -1,0 +1,20 @@
+%h2.titulo01 Información Proyecto
+
+%table.sglea
+  %tr
+    %td.tit Nombre
+    %td.inp= @proyecto.nombre
+  %tr
+    %td.tit Fecha Inicio
+    %td.inp= @proyecto.fechainicio
+  %tr
+    %td.tit Fecha Termino
+    %td.inp= @proyecto.fechatermino
+  %tr
+    %td.tit Ambiente
+    %td.inp= @proyecto.ambiente
+
+%br/
+= link_button 'Editar', edit_proyecto_path(@proyecto)
+= link_button 'Volver', proyectos_path
+

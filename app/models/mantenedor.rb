@@ -161,6 +161,10 @@ class Mantenedor < ActiveRecord::Base
   def comparencias
     Mantenedor.where(:tipo => :comparencias).order(:id)
   end
+  
+  def self.ambientes
+     Mantenedor.where(:tipo => :ambiente).order(:id)
+   end
   def self.search(search)
    if search
       where(:tipo.matches => "%#{search}%")

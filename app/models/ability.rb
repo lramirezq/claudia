@@ -16,6 +16,7 @@ class Ability
     if user.role? :administrador
       can :manage, User
       can :manage, Mantenedor
+      can :manage, Proyecto
       #Permisos para busquedas
         
     end

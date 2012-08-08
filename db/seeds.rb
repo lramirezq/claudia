@@ -71,6 +71,14 @@ end
   Mantenedor.create(:tipo => :tiposexo, :valor => valor)
 end
 
+# Ambientes
+[ "Desarrollo",
+  "QA",
+  "Producción"
+  ].each do |valor|
+  Mantenedor.create(:tipo => :ambiente, :valor => valor)
+end
+
 
 
 # roles

@@ -1,0 +1,41 @@
+= form_for(@proyecto) do |f|
+  - if @proyecto.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@proyecto.errors.count, "error")
+        no permiten generar este nuevo proyecto
+      %ul
+        - @proyecto.errors.full_messages.each do |msg|
+          %li= msg
+  %table.sglea
+    %tr
+      %td.tit Nombre
+      %td.inp= f.text_field :nombre
+    %tr 
+      %td.tit Fecha Inicio
+      %td.inp= f.text_field :fechainicio
+      :javascript
+        $('#proyecto_fechainicio').datetimepicker({
+          timeText: 'Tiempo',
+          hourText: 'hora',
+          minuteText: 'min',
+          stepMinute: 1,
+          currentText: 'Fecha y hora actual'
+        });
+    %tr
+      %td.tit Fecha Termino
+      %td.inp= f.text_field :fechatermino
+      :javascript
+        $('#proyecto_fechatermino').datetimepicker({
+          timeText: 'Tiempo',
+          hourText: 'hora',
+          minuteText: 'min',
+          stepMinute: 1,
+          currentText: 'Fecha y hora actual'
+        });
+    %tr
+      %td.tit Ambiente
+      %td.inp= manten f, :ambiente, Mantenedor.ambientes, 'Seleccione Ambiente'
+    %tr 
+      %td= f.submit
+	

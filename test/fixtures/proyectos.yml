@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  fechainicio: 2012-08-07 22:19:33
+  fechatermino: 2012-08-07 22:19:33
+  ambiente: MyString
+
+two:
+  nombre: MyString
+  fechainicio: 2012-08-07 22:19:33
+  fechatermino: 2012-08-07 22:19:33
+  ambiente: MyString

@@ -10,8 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110125031305) do
+ActiveRecord::Schema.define(:version => 20120808022042) do
 
+  create_table "actividads", :force => true do |t|
+    t.string   "nombre"
+    t.string   "detalle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fases", :force => true do |t|
+    t.string   "nombre"
+    t.string   "detalle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mantenedors", :force => true do |t|
     t.string   "tipo"
@@ -20,6 +33,15 @@ ActiveRecord::Schema.define(:version => 20110125031305) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "codigo"
+  end
+
+  create_table "proyectos", :force => true do |t|
+    t.string   "nombre"
+    t.datetime "fechainicio"
+    t.datetime "fechatermino"
+    t.string   "ambiente"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reports", :force => true do |t|
@@ -47,8 +69,6 @@ ActiveRecord::Schema.define(:version => 20110125031305) do
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
- 
-
   create_table "userroles", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
@@ -75,7 +95,5 @@ ActiveRecord::Schema.define(:version => 20110125031305) do
 
   add_index "users", ["login"], :name => "index_users_on_login"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
-
-  
 
 end

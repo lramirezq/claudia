@@ -1,0 +1,22 @@
+%h2.titulo01 Listado de Proyectos
+%table.sglea.datos
+  %tr
+    %td.titg Nombre
+    %td.titg Fecha Inicio
+    %td.titg Fecha Termino
+    %td.titg Ambiente
+    %td.titg Ver
+    %td.titg Editar
+    %td.titg Eliminar
+  - @proyectos.each do |proyecto|
+    %tr
+      %td= proyecto.nombre
+      %td= proyecto.fechainicio
+      %td= proyecto.fechatermino
+      %td= proyecto.ambiente
+      %td= link_to image_tag("ver.png"), proyecto
+      %td= link_to image_tag("editar.png"), edit_proyecto_path(proyecto)
+      %td= link_to image_tag("eliminar.png"), proyecto, :confirm => '¿Está Seguro?', :method => :delete
+      
+%br/
+= link_button 'Agregar Proyecto', new_proyecto_path

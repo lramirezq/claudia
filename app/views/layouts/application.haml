@@ -47,7 +47,11 @@
                     %li.inicia{:onMouseOut => "desaparece('Iniciativas');", :onMouseOver => "javascript: aparece('Iniciativas');"}
                       %a{:href => "#"} Proyectos
                       %ul#Iniciativas
-                        
+                        - if can? :create, Proyecto 
+                          %li= link_to 'Ingresar Proyecto', new_proyecto_path
+                        - if can? :index, Proyecto 
+                          %li= link_to 'Listar Proyectos', proyectos_path
+						
                     
                     %li.docume{:onMouseOut => "desaparece('Asistencias');", :onMouseOver => "javascript: aparece('Asistencias');"}
                       %a{:href => "#"} Fase

@@ -1,5 +1,11 @@
 Claudia::Application.routes.draw do
 
+  resources :actividads
+
+  resources :fases
+
+  resources :proyectos
+
 #  resources :testigos
 #  resources :informe_causa_terminadas
 #  resources :informe_victimas
