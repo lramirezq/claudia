@@ -1,41 +1,47 @@
-= form_for(@proyecto) do |f|
-  - if @proyecto.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@proyecto.errors.count, "error")
-        no permiten generar este nuevo proyecto
-      %ul
-        - @proyecto.errors.full_messages.each do |msg|
-          %li= msg
-  %table.sglea
-    %tr
-      %td.tit Nombre
-      %td.inp= f.text_field :nombre
-    %tr 
-      %td.tit Fecha Inicio
-      %td.inp= f.text_field :fechainicio
-      :javascript
-        $('#proyecto_fechainicio').datetimepicker({
-          timeText: 'Tiempo',
-          hourText: 'hora',
-          minuteText: 'min',
-          stepMinute: 1,
-          currentText: 'Fecha y hora actual'
-        });
-    %tr
-      %td.tit Fecha Termino
-      %td.inp= f.text_field :fechatermino
-      :javascript
-        $('#proyecto_fechatermino').datetimepicker({
-          timeText: 'Tiempo',
-          hourText: 'hora',
-          minuteText: 'min',
-          stepMinute: 1,
-          currentText: 'Fecha y hora actual'
-        });
-    %tr
-      %td.tit Ambiente
-      %td.inp= manten f, :ambiente, Mantenedor.ambientes, 'Seleccione Ambiente'
-    %tr 
-      %td= f.submit
+- if @proyecto.errors.any?
+  #error_explanation
+    %h2 #{@proyecto.errors.count} errores impiden ingresar el proyecto:
+    %ul
+      - @proyecto.errors.full_messages.each do |msg|
+        %li= msg
+%h2.titulo01 DETALLE PROYECTO
+%table.sglea
+  %tr
+    %td.tit Nombre
+    %td.inp= f.text_field :nombre
+    %td.tit Ambiente
+    %td.inp= manten f, :ambiente, Mantenedor.ambientes, 'Seleccione Ambiente'
+  %tr 
+    %td.tit Fecha Inicio
+    %td.inp= f.text_field :fechainicio
+    :javascript
+      $('#proyecto_fechainicio').datetimepicker({
+        timeText: 'Tiempo',
+        hourText: 'hora',
+        minuteText: 'min',
+        stepMinute: 1,
+        currentText: 'Fecha y hora actual'
+      });
+    %td.tit Fecha Termino
+    %td.inp= f.text_field :fechatermino
+    :javascript
+      $('#proyecto_fechatermino').datetimepicker({
+        timeText: 'Tiempo',
+        hourText: 'hora',
+        minuteText: 'min',
+        stepMinute: 1,
+        currentText: 'Fecha y hora actual'
+      });
+%h2.titulo01 FASES
+.field
+  = f.fields_for :fases do |builder|
+    = render 'fase_fields', :f => builder, :form_disabled => form_disabled
+= link_to_add_fields "Agregar Fase", f, :fases if not form_disabled
+%br/
+%br/
+
+
+
+
+
 	

@@ -1,0 +1,19 @@
+.fields
+  = f.hidden_field :_destroy
+  %h1 FASE
+  %table.sglea.noborder
+    %tr
+      %td.tit Nombre
+      %td.inp= f.text_field :nombre
+      %td.tit Detalle
+      %td.inp= f.text_field :detalle
+      %td.inp= link_to_remove_fields "Eliminar", f if not form_disabled
+
+
+%h2.titulo01  ACTIVIDADES
+.field
+  = f.fields_for :actividads do |builder|
+    = render 'actividad_fields', :f => builder, :form_disabled => form_disabled
+= link_to_add_fields "Agregar Actividad", f, :actividads if not form_disabled
+%br/
+%br/	

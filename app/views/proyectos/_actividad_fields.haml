@@ -1,0 +1,9 @@
+.fields
+  = f.hidden_field :_destroy
+  %table.sglea.noborder
+    %tr
+      %td.tit Nombre
+      %td.inp= f.text_field :nombre
+      %td.tit Detalle
+      %td.inp= f.text_field :detalle
+      %td.inp= link_to_remove_fields "Eliminar", f if not form_disabled

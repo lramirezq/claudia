@@ -1,6 +1,7 @@
-%h2.titulo01 Nuevo Proyecto
+- title "Ingreso de Proyecto"
 
-= render 'form'
+- form_for @proyecto, :html => { :multipart => true } do |f|
+  = render 'form', :f => f, :form_disabled => false
+  .actions{:align => "center"}
+    = f.submit 'Ingresar Proyecto'
 
-%br/
-= link_button 'Volver', proyectos_path

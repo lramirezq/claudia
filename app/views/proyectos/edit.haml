@@ -1,7 +1,8 @@
-%h2.titulo01 Editar Proyecto
+- title "Modificación Proyecti " + @proyecto.nombre.to_s
 
-= render 'form'
-
-%br/
+- form_for @proyecto, :html => { :multipart => true } do |f|
+  = render 'form', :f => f, :form_disabled => false
+  .actions{:align => "center"}
+    = f.submit 'Modificar Proyecto'
 = link_button 'Ver', @proyecto
 = link_button 'Volver', proyectos_path
