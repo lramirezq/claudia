@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   acts_as_authentic
+ 
+ 
+  has_many :proyectos_users
+  has_many :proyectos, :through => :proyectos_users
   has_many :userroles
   has_many :roles, :through => :userroles
   

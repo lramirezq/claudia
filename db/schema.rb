@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120809150539) do
+ActiveRecord::Schema.define(:version => 20120824213002) do
 
   create_table "actividads", :force => true do |t|
     t.string   "nombre"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20120809150539) do
     t.datetime "fechainicio"
     t.datetime "fechatermino"
     t.string   "ambiente"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "proyectos_users", :force => true do |t|
+    t.integer  "proyecto_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20120809150539) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "proyecto_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login"
