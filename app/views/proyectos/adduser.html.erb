@@ -1,0 +1,21 @@
+<h1>Seleccione Proyecto para modificar usuarios</h1>
+<table class='sglea datos'>
+    <tr>
+		<td class="titg">Proyecto</td>
+        <td class ="titg">Usuarios</td>
+	</tr>
+<% for proyecto in @proyectos %>
+  <tr>
+	<td><%=proyecto.nombre%></td>
+	<td>
+	<%for user in @usuarios %>
+		<p><%=check_box_tag 'user_ids[]', user.id -%><%=user.nombre%>
+	<%end%>
+	</td>
+</tr>
+<%end%>
+
+</table>
+
+<br />
+

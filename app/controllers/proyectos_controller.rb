@@ -42,7 +42,7 @@ class ProyectosController < ApplicationController
   # POST /proyectos.xml
   def create
     @proyecto = Proyecto.new(params[:proyecto])
-
+ 
     respond_to do |format|
       if @proyecto.save
         format.html { redirect_to(@proyecto, :notice => 'Proyecto fue creado exitosamente.') }
@@ -80,5 +80,16 @@ class ProyectosController < ApplicationController
       format.html { redirect_to(proyectos_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def adduser
+    @proyectos = Proyecto.all
+    @usuarios = User.all
+    puts "Aqui pase !"
+  
+     respond_to do |format|
+        format.html 
+        format.xml  { head :ok }
+      end
   end
 end

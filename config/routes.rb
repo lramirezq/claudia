@@ -5,7 +5,8 @@ Claudia::Application.routes.draw do
   resources :fases
 
   resources :proyectos
-
+  
+  
 #  resources :testigos
 #  resources :informe_causa_terminadas
 #  resources :informe_victimas
@@ -20,8 +21,7 @@ Claudia::Application.routes.draw do
 #  resources :asistencias
   resources :users
   resources :mantenedors 
-# resources :victimas
-#  resources :imputados
+
 
   controller :home do
     get   'about'     => :about
@@ -46,7 +46,7 @@ Claudia::Application.routes.draw do
 #  match 'javascripts/causas(.:format)' => "javascripts#causas"
 #  match "eventos/:id/validate" => "eventos#validate", :as => :validate_evento
 #  match "causas/:id/validate" => "causas#validate", :as => :validate_causa
-  
+  match "p/adduser(.:format)" => "proyectos#adduser", :as => :add_user
   
   # match ':controller(/:action(/:id(.:format)))'
   

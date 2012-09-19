@@ -32,16 +32,23 @@
         stepMinute: 1,
         currentText: 'Fecha y hora actual'
       });
-
-
+  
 
 %h2.titulo01 FASES
 .field
   = f.fields_for :fases do |builder|
     = render 'fase_fields', :f => builder, :form_disabled => form_disabled
 = link_to_add_fields "Agregar Fase", f, :fases if not form_disabled
-%br/
-%br/
+
+%table.sglea
+  %tr
+    %td.tit Usuarios
+    %td.inp
+      - for user in User.all
+        %p
+          = check_box_tag "proyecto[user_ids][]", user.id, @proyecto.users.include?(user), { :id => "proyecto_user_ids_" + user.id.to_s }
+          %label{:for => "proyecto_user_ids_#{user.id}"}= user.nombre + " (" +user.roles.map(&:nombre).join(', ') +")"
+
 
 
 

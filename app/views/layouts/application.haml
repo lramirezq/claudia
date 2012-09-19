@@ -51,7 +51,9 @@
                           %li= link_to 'Ingresar Proyecto', new_proyecto_path
                         - if can? :index, Proyecto 
                           %li= link_to 'Listar Proyectos', proyectos_path
-						
+                        - if can? :add_user, Proyecto
+                          %li= link_to 'Agregar User', add_user_path
+
                     
                     %li.docume{:onMouseOut => "desaparece('Asistencias');", :onMouseOver => "javascript: aparece('Asistencias');"}
                       %a{:href => "#"} Fase
