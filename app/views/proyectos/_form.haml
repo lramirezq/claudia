@@ -1,10 +1,21 @@
+%td.inp= f.hidden_field :porcentaje, :value =>  @totalPorcentaje 
+
 - if @proyecto.errors.any?
   #error_explanation
     %h2 #{@proyecto.errors.count} errores impiden ingresar el proyecto:
     %ul
       - @proyecto.errors.full_messages.each do |msg|
         %li= msg
-%h2.titulo01 DETALLE PROYECTO
+
+:javascript
+  $(document).ready(function() {
+    $("#progressbar").progressbar({  value : 98 });
+  });
+
+
+%h2.titulo01 PROYECTO
+#progressbar
+=@totalPorcentaje
 %table.sglea
   %tr
     %td.tit Nombre
@@ -34,7 +45,7 @@
       });
   
 
-%h2.titulo01 FASES
+
 .field
   = f.fields_for :fases do |builder|
     = render 'fase_fields', :f => builder, :form_disabled => form_disabled

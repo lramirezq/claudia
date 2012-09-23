@@ -1,4 +1,11 @@
 %h2.titulo01 Listado de Proyectos
+- form_tag proyectos_path, :method => 'get' do
+  %p
+    Nombre Proyecto:  #{text_field_tag :search, params[:search]}
+    \#{submit_tag "Buscar", :nombre => nil}
+  %p
+    Paginación: #{select_paginacion @per_page}
+= will_paginate @proyectos
 %table.sglea.datos
   %tr
     %td.titg Nombre

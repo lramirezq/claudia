@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824213002) do
+ActiveRecord::Schema.define(:version => 20120923204124) do
 
   create_table "actividads", :force => true do |t|
     t.string   "nombre"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20120824213002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fase_id"
+    t.boolean  "estado"
   end
 
   create_table "fases", :force => true do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120824213002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "proyecto_id"
+    t.boolean  "estado"
   end
 
   create_table "mantenedors", :force => true do |t|
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120824213002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "porcentaje"
   end
 
   create_table "proyectos_users", :force => true do |t|

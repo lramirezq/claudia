@@ -135,6 +135,9 @@ function estado_causa(id){
   }else{
     $("#field_terminada").hide("slow");
   }
+ 
+function ckeckOK(){
+	alert("Aqui");
+} 
   
-  
-}
+

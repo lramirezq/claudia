@@ -51,30 +51,8 @@
                           %li= link_to 'Ingresar Proyecto', new_proyecto_path
                         - if can? :index, Proyecto 
                           %li= link_to 'Listar Proyectos', proyectos_path
-                        - if can? :add_user, Proyecto
-                          %li= link_to 'Agregar User', add_user_path
-
-                    
-                    %li.docume{:onMouseOut => "desaparece('Asistencias');", :onMouseOver => "javascript: aparece('Asistencias');"}
-                      %a{:href => "#"} Fase
-                      %ul#Asistencias
-                   
-                    
-                    %li.docume{:onMouseOut => "desaparece('Documen');", :onMouseOver => "javascript: aparece('Documen');"}
-                      %a{:href => "#"} Actividad
-                      %ul#Documen
-                       
                         
-                        
-                    
-                    %li.docume{:onMouseOut => "desaparece('Documentowq');", :onMouseOver => "javascript: aparece('Documentowq');"}
-                      %a{:href => "#"} Reportes
-                      
-                     
-                        
-                        
-                          
-                       
+          
 						  
                     %li.docume{:onMouseOut => "desaparece('Documento');", :onMouseOver => "javascript: aparece('Documento');"}
                       %a{:href => "#"} Mantenedores

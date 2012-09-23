@@ -1,9 +1,18 @@
+# -*- coding: utf-8 -*-
 class ProyectosController < ApplicationController
     load_and_authorize_resource
   # GET /proyectos
   # GET /proyectos.xml
   def index
-    @proyectos = Proyecto.all
+    
+    @proyectos = paginamiento Proyecto.all(:order => "id DESC")
+    cod = params[:search]
+    
+    if cod !=nil && !cod.empty?
+       @proyectos = paginamiento Proyecto.where(:nombre.matches => "%#{cod}%")
+    end
+    
+   
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,6 +36,93 @@ class ProyectosController < ApplicationController
   def new
     @proyecto = Proyecto.new
     @users = User.all
+   #Template
+    @fase = Fase.new
+    @fase.nombre = "Fase Análisis"
+    @fase1 = Fase.new
+    @fase1.nombre = "Fase Diseño"
+    @fase2 = Fase.new
+    @fase2.nombre = "Fase Ejecución"
+    @fase3 = Fase.new
+    @fase3.nombre = "Cierre"
+    @fase4 = Fase.new
+    @fase4.nombre = "Aceptación (opcional)"
+    #Actividades
+    @a = Actividad.new
+    @a.nombre = "Entrega de Requerimientos de Sistema"
+    @a1 = Actividad.new
+    @a1.nombre = "Análisis de  funcionalidades"
+    @a2 = Actividad.new
+    @a2.nombre = "Estimación preliminar de esfuerzo"
+    @a3 = Actividad.new
+    @a3.nombre = "Creación documento de requerimientos DORE"
+    @a4 = Actividad.new
+    @a4.nombre = "Validación del documento de requerimientos funcionales"
+    @a5 = Actividad.new
+    @a5.nombre = "Reunión de término de fase"
+    
+    
+    
+    
+    #Construyendo Fases 
+    @proyecto.fases[0] = @fase
+    @proyecto.fases[0].actividads[0]=@a
+    @proyecto.fases[0].actividads[1]=@a1
+    @proyecto.fases[0].actividads[2]=@a2
+    @proyecto.fases[0].actividads[3]=@a3
+    @proyecto.fases[0].actividads[4]=@a4
+    @proyecto.fases[0].actividads[5]=@a5
+    @proyecto.fases[1] = @fase1
+    @a = Actividad.new
+    @a.nombre = "Creación de Plan de Pruebas"
+    @a1 = Actividad.new
+    @a1.nombre = "Preparación de ambiente y datos de prueba"
+    @a2 = Actividad.new
+    @a2.nombre = "Validación del Plan de pruebas"
+    @a3 = Actividad.new
+    @a3.nombre = "Reunión de término de fase"
+    @proyecto.fases[1].actividads[0]=@a
+    @proyecto.fases[1].actividads[1]=@a1
+    @proyecto.fases[1].actividads[2]=@a2
+    @proyecto.fases[1].actividads[3]=@a3
+    @proyecto.fases[2] = @fase2
+    @a = Actividad.new
+    @a.nombre = "Ejecución de pruebas - Ciclo 1"
+    @a1 = Actividad.new
+    @a1.nombre = " Seguimiento de incidentes"
+    @a2 = Actividad.new
+    @a2.nombre = "Validación del informe de avance e incidentes"
+    @a3 = Actividad.new
+    @a3.nombre = "Reunión de término de fase"
+    @proyecto.fases[2].actividads[0]=@a
+    @proyecto.fases[2].actividads[1]=@a1
+    @proyecto.fases[2].actividads[2]=@a2
+    @proyecto.fases[2].actividads[3]=@a3
+    @proyecto.fases[3] = @fase3
+    @a = Actividad.new
+    @a.nombre = "Cierre / Conclusión del proyecto"
+    @a1 = Actividad.new
+    @a1.nombre = "Presentación de resultados"
+    @a2 = Actividad.new
+    @a2.nombre = "Validación de los entregables de Cierre"
+    @a3 = Actividad.new
+    @a3.nombre = "Reunión de término de fase"
+    @proyecto.fases[3].actividads[0]=@a
+    @proyecto.fases[3].actividads[1]=@a1
+    @proyecto.fases[3].actividads[2]=@a2
+    @proyecto.fases[3].actividads[3]=@a3
+    @proyecto.fases[4] = @fase4
+    @a = Actividad.new
+    @a.nombre = "Pruebas de Aceptación del Usuario"
+    @a1 = Actividad.new
+    @a1.nombre = "Validación del informe de incidencias"
+    @a2 = Actividad.new
+    @a2.nombre = "Reunión de término de fase"
+    @proyecto.fases[4].actividads[0]=@a
+    @proyecto.fases[4].actividads[1]=@a1
+    @proyecto.fases[4].actividads[2]=@a2
+    @totalPorcentaje = 98
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @proyecto }
