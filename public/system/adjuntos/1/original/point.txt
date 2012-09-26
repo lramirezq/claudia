@@ -1,0 +1,4 @@
+- Historial de cambios realizados a fechas
+- Agregar campos ==> 
+- Calculo de fecha de nacimiento y actualización de la data.
+- agregar archivos desde la página y no atraves de filesystem.

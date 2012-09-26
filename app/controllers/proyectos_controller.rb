@@ -36,7 +36,7 @@ class ProyectosController < ApplicationController
   def new
     @proyecto = Proyecto.new
     @users = User.all
-   #Template
+    #Template
     @fase = Fase.new
     @fase.nombre = "Fase Análisis"
     @fase1 = Fase.new
@@ -60,10 +60,10 @@ class ProyectosController < ApplicationController
     @a4.nombre = "Validación del documento de requerimientos funcionales"
     @a5 = Actividad.new
     @a5.nombre = "Reunión de término de fase"
-    
-    
-    
-    
+
+
+
+
     #Construyendo Fases 
     @proyecto.fases[0] = @fase
     @proyecto.fases[0].actividads[0]=@a

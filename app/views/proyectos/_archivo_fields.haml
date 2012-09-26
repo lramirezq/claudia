@@ -1,0 +1,11 @@
+.fields
+  = f.hidden_field :_destroy
+  %table.sglea.noborder
+    %tr
+      %td.tit Archivo
+      %td.inp= f.file_field :adjunto
+      %td.tit Detalle
+      %td.inp= f.text_field :detalle, {:size => 60}
+      %td.tit Valida
+      %td.inp= f.check_box :valida
+      %td.inp= link_to_remove_fields "Eliminar", f if not form_disabled

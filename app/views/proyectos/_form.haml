@@ -1,5 +1,3 @@
-%td.inp= f.hidden_field :porcentaje, :value =>  @totalPorcentaje 
-
 - if @proyecto.errors.any?
   #error_explanation
     %h2 #{@proyecto.errors.count} errores impiden ingresar el proyecto:
@@ -7,15 +5,7 @@
       - @proyecto.errors.full_messages.each do |msg|
         %li= msg
 
-:javascript
-  $(document).ready(function() {
-    $("#progressbar").progressbar({  value : 98 });
-  });
-
-
 %h2.titulo01 PROYECTO
-#progressbar
-=@totalPorcentaje
 %table.sglea
   %tr
     %td.tit Nombre

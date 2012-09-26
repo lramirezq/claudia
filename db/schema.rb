@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923204124) do
+ActiveRecord::Schema.define(:version => 20120926044058) do
 
   create_table "actividads", :force => true do |t|
     t.string   "nombre"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(:version => 20120923204124) do
     t.boolean  "estado"
   end
 
+  create_table "archivos", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "adjunto_file_name"
+    t.string   "adjunto_content_type"
+    t.integer  "adjunto_file_size"
+    t.datetime "adjunto_updated_at"
+    t.string   "detalle"
+    t.boolean  "valida"
+    t.integer  "fase_id"
+  end
+
   create_table "fases", :force => true do |t|
     t.string   "nombre"
     t.string   "detalle"
@@ -28,6 +40,11 @@ ActiveRecord::Schema.define(:version => 20120923204124) do
     t.datetime "updated_at"
     t.integer  "proyecto_id"
     t.boolean  "estado"
+    t.string   "adjunto_file_name"
+    t.string   "adjunto_content_type"
+    t.integer  "adjunto_file_size"
+    t.datetime "adjunto_updated_at"
+    t.integer  "achivo_id"
   end
 
   create_table "mantenedors", :force => true do |t|
