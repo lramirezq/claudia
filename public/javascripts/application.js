@@ -3,11 +3,26 @@ function remove_fields(link) {
   $(link).closest(".fields").hide();
 }
 
+function remove_fields_act(link) {
+  $(link).prev("input[type=hidden]").val("true");
+  $(link).closest(".fields").hide();
+  recalcular();
+}
+
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
   $(link).before(content.replace(regexp, new_id));
 }
+
+
+function add_fields_act(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).before(content.replace(regexp, new_id));
+  recalcular();
+}
+
 
 function add_fields_especial(link, association, content) {
   var new_id = new Date().getTime();
@@ -137,4 +152,37 @@ function estado_causa(id){
   }
 } 
 
+
+
+
+  
+  function recalcular(){
+	//Contar Actividades
+	var a = 56;
+	x = 0;y=0;i=0;j=0;totalcheck=0;totalchecktrue=0;
+	while (i == 0){
+		if(document.getElementById("proyecto_fases_attributes_"+x+"_actividads_attributes_"+y+"_estado")){
+			totalcheck++;
+			obj = document.getElementById("proyecto_fases_attributes_"+x+"_actividads_attributes_"+y+"_estado");
+			if(obj.checked){
+				totalchecktrue++;
+			}
+			y++;
+			j=0;
+		}else{
+			y=0;
+			x++;
+			j++;
+		}
+		
+		if(j==2){
+			i=1;
+		}
+		
+	}
+	a = (totalchecktrue * 100 / totalcheck);
+	$("#progressbar").progressbar({ value: a });
+	$("#porcentaje").val(a.toFixed(2));
+	$("#proyecto_porcentaje").val(a.toFixed(2));
+  }
 

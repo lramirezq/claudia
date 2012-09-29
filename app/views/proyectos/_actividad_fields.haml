@@ -6,5 +6,5 @@
       %td.inp= f.text_field :nombre, {:size => 60}
       %td.tit Detalle
       %td.inp= f.text_field :detalle, {:size => 60}
-      %td.inp= f.check_box :estado, :onclick => "alert('Actividad Realizada')"
+      %td.inp= f.check_box :estado, :onclick => "alert('Actividad Realizada');recalcular();"
       %td.inp= link_to_remove_fields "Eliminar", f if not form_disabled

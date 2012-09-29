@@ -12,6 +12,7 @@
     %td.titg Fecha Inicio
     %td.titg Fecha Termino
     %td.titg Ambiente
+    %td.titg % Avance
     %td.titg Ver
     %td.titg Editar
     %td.titg Eliminar
@@ -21,6 +22,7 @@
       %td= proyecto.fechainicio
       %td= proyecto.fechatermino
       %td= proyecto.ambiente
+      %td= proyecto.porcentaje.to_s==""?"0 %":proyecto.porcentaje.to_s+" %"
       %td= link_to image_tag("ver.png"), proyecto
       %td= link_to image_tag("editar.png"), edit_proyecto_path(proyecto)
       %td= link_to image_tag("eliminar.png"), proyecto, :confirm => '¿Está Seguro?', :method => :delete

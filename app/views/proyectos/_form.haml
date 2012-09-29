@@ -6,6 +6,13 @@
         %li= msg
 
 %h2.titulo01 PROYECTO
+
+<div id="progressbar"></div>
+=text_field_tag("porcentaje", value = nil, options = {:size => 3, :disabled => true})
+=f.hidden_field :porcentaje
+\%
+%br/
+%br/
 %table.sglea
   %tr
     %td.tit Nombre
@@ -50,7 +57,8 @@
           = check_box_tag "proyecto[user_ids][]", user.id, @proyecto.users.include?(user), { :id => "proyecto_user_ids_" + user.id.to_s }
           %label{:for => "proyecto_user_ids_#{user.id}"}= user.nombre + " (" +user.roles.map(&:nombre).join(', ') +")"
 
-
+:javascript
+  recalcular();
 
 
 

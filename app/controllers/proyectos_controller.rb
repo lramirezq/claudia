@@ -4,7 +4,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos
   # GET /proyectos.xml
   def index
-    
+     @action = "index"
     @proyectos = paginamiento Proyecto.all(:order => "id DESC")
     cod = params[:search]
     
@@ -23,6 +23,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos/1
   # GET /proyectos/1.xml
   def show
+     @action = "show"
     @proyecto = Proyecto.find(params[:id])
 
     respond_to do |format|
@@ -34,6 +35,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos/new
   # GET /proyectos/new.xml
   def new
+     @action = "new"
     @proyecto = Proyecto.new
     @users = User.all
     #Template
@@ -132,6 +134,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos/1/edit
   def edit
     @proyecto = Proyecto.find(params[:id])
+    @action = "edit"
   end
 
   # POST /proyectos
@@ -154,7 +157,7 @@ class ProyectosController < ApplicationController
   # PUT /proyectos/1.xml
   def update
     @proyecto = Proyecto.find(params[:id])
-
+     @action = "update"
     respond_to do |format|
       if @proyecto.update_attributes(params[:proyecto])
         format.html { redirect_to(@proyecto, :notice => 'Proyecto fue actualizado correctamente.') }
@@ -169,6 +172,7 @@ class ProyectosController < ApplicationController
   # DELETE /proyectos/1
   # DELETE /proyectos/1.xml
   def destroy
+     @action = "delete"
     @proyecto = Proyecto.find(params[:id])
     @proyecto.destroy
 
@@ -178,14 +182,5 @@ class ProyectosController < ApplicationController
     end
   end
   
-  def adduser
-    @proyectos = Proyecto.all
-    @usuarios = User.all
-    puts "Aqui pase !"
-  
-     respond_to do |format|
-        format.html 
-        format.xml  { head :ok }
-      end
-  end
+ 
 end

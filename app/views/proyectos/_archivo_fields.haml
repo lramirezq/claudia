@@ -4,6 +4,8 @@
     %tr
       %td.tit Archivo
       %td.inp= f.file_field :adjunto
+      %td.inp= f.text_field :adjunto
+      %td= link_to image_tag("descargar.png") 
       %td.tit Detalle
       %td.inp= f.text_field :detalle, {:size => 60}
       %td.tit Valida
