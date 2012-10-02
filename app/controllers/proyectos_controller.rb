@@ -5,12 +5,30 @@ class ProyectosController < ApplicationController
   # GET /proyectos.xml
   def index
      @action = "index"
+     
     @proyectos = paginamiento Proyecto.all(:order => "id DESC")
     cod = params[:search]
-    
+    us = params[:user]
+  
     if cod !=nil && !cod.empty?
-       @proyectos = paginamiento Proyecto.where(:nombre.matches => "%#{cod}%")
+       @proyectos = paginamiento Proyecto.where(:nombre.matches => "%#{cod}%") 
     end
+    
+    
+    if us !=nil && !us.empty?
+      @proyectos.each do |proyecto|
+        a = 0
+        proyecto.users.each do |u|
+          if u.nombre.upcase.include?us.upcase
+            puts "Esto viene " + u.nombre.upcase + " coincide con " + us.upcase + "proyecto => " + proyecto.id.to_s
+          a = 1  
+          end
+        end
+        if (a==0)
+          @proyectos.delete(proyecto)
+        end
+    end
+  end
     
    
 

@@ -51,9 +51,10 @@
                           %li= link_to 'Ingresar Proyecto', new_proyecto_path
                         - if can? :index, Proyecto 
                           %li= link_to 'Listar Proyectos', proyectos_path
-                        
-          
-						  
+                    
+                    %li.docume{:onMouseOut => "desaparece('Documento');", :onMouseOver => "javascript: aparece('Documento');"}
+                      %a{:href => "/proyectos"} Buscar Proyectos
+					  
                     %li.docume{:onMouseOut => "desaparece('Documento');", :onMouseOver => "javascript: aparece('Documento');"}
                       %a{:href => "#"} Mantenedores
                       %ul#Documento

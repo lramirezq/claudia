@@ -17,10 +17,37 @@ class Ability
       can :manage, User
       can :manage, Mantenedor
       can :manage, Proyecto
-      #Permisos para busquedas
-        
     end
     
+    if user.role? :usuario  
+      can :manage, Documento    
+      can :index, Proyecto
+      can :read, Proyecto
+    end
+    
+    if user.role? :jefe
+      can :index, Proyecto
+      can :read, Proyecto
+      can :edit, Proyecto
+      can :update, Proyecto
+      can :destroy, Proyecto
+    end
+    
+     if user.role? :tester
+        can :index, Proyecto
+        can :read, Proyecto
+        can :edit, Proyecto
+        can :update, Proyecto
+        can :destroy, Proyecto
+      end
+      
+    
+    if user.role? :analista
+      can :index, Proyecto
+      can :read, Proyecto
+      can :edit, Proyecto
+      can :update, Proyecto
+    end
     
   end
 end

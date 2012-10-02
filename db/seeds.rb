@@ -83,10 +83,10 @@ end
 
 # roles
 [ "Administrador",
-  "Jefe de proyecto de testing",
-  "Analista de testing",
+  "Jefe",
+  "Analista",
   "Tester",
-  "Usuario (Cliente)"
+  "Usuario"
   ].each do |nombre|
   Role.create(:nombre => nombre)
 end

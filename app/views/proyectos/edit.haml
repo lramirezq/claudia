@@ -3,6 +3,6 @@
 - form_for @proyecto, :html => { :multipart => true } do |f|
   = render 'form', :f => f, :form_disabled => false
   .actions{:align => "center"}
-    = f.submit 'Modificar Proyecto'
+    = f.submit 'Actualizar Proyecto'
 = link_button 'Ver', @proyecto
 = link_button 'Volver', proyectos_path

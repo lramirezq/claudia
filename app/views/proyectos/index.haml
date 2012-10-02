@@ -1,8 +1,14 @@
 %h2.titulo01 Listado de Proyectos
 - form_tag proyectos_path, :method => 'get' do
-  %p
-    Nombre Proyecto:  #{text_field_tag :search, params[:search]}
-    \#{submit_tag "Buscar", :nombre => nil}
+  %table
+    %tr
+      %td Nombre Proyecto  
+      %td #{text_field_tag :search, params[:search]} 
+    %tr
+      %td Usuario:  
+      %td #{text_field_tag :user, params[:user]} 	
+    %tr 
+      %td #{submit_tag "Buscar", :nombre => nil}
   %p
     Paginación: #{select_paginacion @per_page}
 = will_paginate @proyectos
@@ -17,15 +23,16 @@
     %td.titg Editar
     %td.titg Eliminar
   - @proyectos.each do |proyecto|
-    %tr
-      %td= proyecto.nombre
-      %td= proyecto.fechainicio
-      %td= proyecto.fechatermino
-      %td= proyecto.ambiente
-      %td= proyecto.porcentaje.to_s==""?"0 %":proyecto.porcentaje.to_s+" %"
-      %td= link_to image_tag("ver.png"), proyecto
-      %td= link_to image_tag("editar.png"), edit_proyecto_path(proyecto)
-      %td= link_to image_tag("eliminar.png"), proyecto, :confirm => '¿Está Seguro?', :method => :delete
+    - if proyecto.users.include?(current_user) || current_user.roles.map(&:nombre).join(', ').to_s["Administrador"] == "Administrador"
+      %tr
+        %td= proyecto.nombre
+        %td= proyecto.fechainicio
+        %td= proyecto.fechatermino
+        %td= proyecto.ambiente
+        %td= proyecto.porcentaje.to_s==""?"0 %":proyecto.porcentaje.to_s+" %"
+        %td= link_to image_tag("ver.png"), proyecto
+        %td= link_to image_tag("editar.png"), edit_proyecto_path(proyecto)
+        %td= link_to image_tag("eliminar.png"), proyecto, :confirm => '¿Está Seguro?', :method => :delete
       
 %br/
 = link_button 'Agregar Proyecto', new_proyecto_path
