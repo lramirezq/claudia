@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929070725) do
+ActiveRecord::Schema.define(:version => 20121002003754) do
 
   create_table "actividads", :force => true do |t|
     t.string   "nombre"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(:version => 20120929070725) do
     t.datetime "updated_at"
     t.integer  "fase_id"
     t.boolean  "estado"
+  end
+
+  create_table "adjuntos", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "archivo_file_name"
+    t.string   "archivo_content_type"
+    t.integer  "archivo_file_size"
+    t.datetime "archivo_updated_at"
   end
 
   create_table "archivos", :force => true do |t|
@@ -33,6 +42,18 @@ ActiveRecord::Schema.define(:version => 20120929070725) do
     t.integer  "fase_id"
   end
 
+  create_table "documentos", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "archivo_file_name"
+    t.string   "archivo_content_type"
+    t.integer  "archivo_file_size"
+    t.datetime "archivo_updated_at"
+    t.integer  "fase_id"
+    t.string   "detalle"
+    t.boolean  "valida"
+  end
+
   create_table "fases", :force => true do |t|
     t.string   "nombre"
     t.string   "detalle"
@@ -45,6 +66,18 @@ ActiveRecord::Schema.define(:version => 20120929070725) do
     t.integer  "adjunto_file_size"
     t.datetime "adjunto_updated_at"
     t.integer  "achivo_id"
+    t.integer  "file_id"
+    t.integer  "documento_id"
+  end
+
+  create_table "files", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "archivo_file_name"
+    t.string   "archivo_content_type"
+    t.integer  "archivo_file_size"
+    t.datetime "archivo_updated_at"
+    t.integer  "fase_id"
   end
 
   create_table "mantenedors", :force => true do |t|

@@ -1,0 +1,15 @@
+.fields
+  = f.hidden_field :_destroy
+  %table.sglea.noborder
+    %tr
+    - if f.object.archivo_file_name.nil?
+      %td.tit Adjuntar Archivo
+      %td.inp=f.file_field :archivo
+    -else
+      %td.tit Adjuntar Archivo
+      %td.inp= link_to image_tag("descargar.png"), f.object.archivo.url
+    %td.tit Detalle
+    %td.inp= f.text_field :detalle
+    %td.tit Valida?
+    %td.inp= f.check_box :valida
+    %td.inp= link_to_remove_fields "Eliminar", f if not form_disabled

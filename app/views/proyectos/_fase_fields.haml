@@ -11,9 +11,9 @@
 
 %h3.titulo01  ARCHIVOS
 .field
-  = f.fields_for :archivos do |builder|
-    = render 'archivo_fields', :f => builder, :form_disabled => form_disabled
-= link_to_add_fields "Agregar Archivo", f, :archivos if not form_disabled
+  = f.fields_for :documentos do |builder|
+    = render 'documento_fields', :f => builder, :form_disabled => form_disabled
+= link_to_add_fields "Agregar Archivo", f, :documentos if not form_disabled
 %br/
 %br/
 	
