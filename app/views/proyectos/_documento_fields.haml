@@ -12,7 +12,7 @@
       %td.inp{:width => "15%"}= link_to image_tag("descargar.png"), f.object.archivo.url
     %td.tit{:width => "15%"}  Detalle
     %td.inp{:width => "15%"}= f.text_field :detalle
-    %td.tit{:width => "15%"}  Estado
+    %td.tit{:width => "15%"} Estado
     - if !f.object.valida && !f.object.rechaza
       %td.inp{:width => "15%"}  NO VALIDADO
     - elsif f.object.valida && !f.object.rechaza
@@ -32,4 +32,5 @@
         %td.inp{:width => "15%"}=f.radio_button :archivo_file_size , :valida, :onclick => "testing('rechaza', this)", :checked => 'checked' 
       %td.tit{:width => "15%"}  Comentario
       %td.inp{:width => "15%"}=f.text_field :comentario
+     
     %td.inp{:width => "15%"}= link_to_remove_fields "Eliminar", f if not form_disabled
