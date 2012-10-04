@@ -5,29 +5,31 @@
   %table.sglea
     %tr
     - if f.object.archivo_file_name.nil?
-      %td.tit Adjuntar Archivo
-      %td.inp=f.file_field :archivo
+      %td.tit{:width => "15%"}  Adjuntar Archivo
+      %td.inp{:width => "15%"}=f.file_field :archivo
     -else
-      %td.tit Adjuntar Archivo
-      %td.inp= link_to image_tag("descargar.png"), f.object.archivo.url
-    %td.tit Detalle
-    %td.inp= f.text_field :detalle
-    %td.tit Estado
+      %td.tit{:width => "15%"}  Adjuntar Archivo
+      %td.inp{:width => "15%"}= link_to image_tag("descargar.png"), f.object.archivo.url
+    %td.tit{:width => "15%"}  Detalle
+    %td.inp{:width => "15%"}= f.text_field :detalle
+    %td.tit{:width => "15%"}  Estado
     - if !f.object.valida && !f.object.rechaza
-      %td.inp NO VALIDADO
+      %td.inp{:width => "15%"}  NO VALIDADO
     - elsif f.object.valida && !f.object.rechaza
-      %td.inp VALIDADO
+      %td.inp{:width => "15%"}  VALIDADO
     - else
-      %td.inp RECHAZADO
+      %td.inp{:width => "15%"}  RECHAZADO
     - if current_user.roles.map(&:nombre).join(', ').to_s["Usuario"] == "Usuario"
       - if f.object.valida
-        %td.tit Valida?
-        %td.inp=f.radio_button :archivo_file_size , :valida, :onclick => "testing('valida', this)", :checked => 'checked' 
-        %td.tit Rechaza?
-        %td.inp=f.radio_button :archivo_file_size , :valida, :onclick => "testing('rechaza', this)"
+        %td.tit{:width => "5%"}  Valida?
+        %td.inp{:width => "15%"}=f.radio_button :archivo_file_size , :valida, :onclick => "testing('valida', this)", :checked => 'checked' 
+        %td.tit{:width => "5%"}  Rechaza?
+        %td.inp{:width => "15%"}=f.radio_button :archivo_file_size , :valida, :onclick => "testing('rechaza', this)"
       - else
-        %td.inp=f.radio_button :archivo_file_size , :valida, :onclick => "testing('valida', this)"
-        %td.tit Rechaza?
-        %td.inp=f.radio_button :archivo_file_size , :valida, :onclick => "testing('rechaza', this)", :checked => 'checked' 
-	
-    %td.inp= link_to_remove_fields "Eliminar", f if not form_disabled
+        %td.tit{:width => "5%"}  Valida?
+        %td.inp{:width => "15%"}=f.radio_button :archivo_file_size , :valida, :onclick => "testing('valida', this)"
+        %td.tit{:width => "5%"} Rechaza?
+        %td.inp{:width => "15%"}=f.radio_button :archivo_file_size , :valida, :onclick => "testing('rechaza', this)", :checked => 'checked' 
+      %td.tit{:width => "15%"}  Comentario
+      %td.inp{:width => "15%"}=f.text_field :comentario
+    %td.inp{:width => "15%"}= link_to_remove_fields "Eliminar", f if not form_disabled
