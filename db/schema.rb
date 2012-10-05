@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002003754) do
+ActiveRecord::Schema.define(:version => 20121004024144) do
 
   create_table "actividads", :force => true do |t|
     t.string   "nombre"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20121002003754) do
     t.integer  "fase_id"
     t.string   "detalle"
     t.boolean  "valida"
+    t.boolean  "rechaza"
   end
 
   create_table "fases", :force => true do |t|

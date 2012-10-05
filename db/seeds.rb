@@ -83,7 +83,7 @@ end
 
 # roles
 [ "Administrador",
-  "Jefe",
+  "Jefe Proyecto",
   "Analista",
   "Tester",
   "Usuario"

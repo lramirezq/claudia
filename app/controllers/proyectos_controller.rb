@@ -5,7 +5,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos.xml
   def index
      @action = "index"
-     
+      puts "pase por aca index !"
     @proyectos = paginamiento Proyecto.all(:order => "id DESC")
     cod = params[:search]
     us = params[:user]
@@ -42,6 +42,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos/1.xml
   def show
      @action = "show"
+      puts "pase por aca show !"
     @proyecto = Proyecto.find(params[:id])
 
     respond_to do |format|
@@ -53,6 +54,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos/new
   # GET /proyectos/new.xml
   def new
+     puts "pase por aca new !"
      @action = "new"
     @proyecto = Proyecto.new
     @users = User.all
@@ -151,6 +153,7 @@ class ProyectosController < ApplicationController
 
   # GET /proyectos/1/edit
   def edit
+     puts "pase por aca edit !"
     @proyecto = Proyecto.find(params[:id])
     @action = "edit"
   end
@@ -159,7 +162,7 @@ class ProyectosController < ApplicationController
   # POST /proyectos.xml
   def create
     @proyecto = Proyecto.new(params[:proyecto])
- 
+  puts "pase por aca create !"
     respond_to do |format|
       if @proyecto.save
         format.html { redirect_to(@proyecto, :notice => 'Proyecto fue creado exitosamente.') }
@@ -176,6 +179,7 @@ class ProyectosController < ApplicationController
   def update
     @proyecto = Proyecto.find(params[:id])
      @action = "update"
+     puts "pase por aca update !"
     respond_to do |format|
       if @proyecto.update_attributes(params[:proyecto])
         format.html { redirect_to(@proyecto, :notice => 'Proyecto fue actualizado correctamente.') }
@@ -191,6 +195,7 @@ class ProyectosController < ApplicationController
   # DELETE /proyectos/1.xml
   def destroy
      @action = "delete"
+      puts "pase por aca destroy !"
     @proyecto = Proyecto.find(params[:id])
     @proyecto.destroy
 
@@ -199,6 +204,12 @@ class ProyectosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def validate
+     #marco que paso por aca
+     a = 1
+   end
+  
   
  
 end

@@ -8,15 +8,15 @@
   %table.sglea
     %tr
       %td.tit Nombre
-      %td.inp= f.text_field :nombre , {:size => 60}
+      %td.inp= f.object.nombre
       %td.tit Detalle
-      %td.inp= f.text_field :detalle, {:size => 60}
+      %td.inp= f.object.detalle
       %td.inp= link_to_remove_fields "Eliminar", f if not form_disabled
 
 %h3.titulo01  ARCHIVOS
 .field
   = f.fields_for :documentos do |builder|
-    = render 'form_document_fields', :f => builder, :form_disabled => form_disabled
+    = render 'documento_fields', :f => builder, :form_disabled => form_disabled
 = link_to_add_fields "Agregar Archivo", f, :documentos if not form_disabled
 %br/
 %br/
@@ -24,7 +24,7 @@
 %h3.titulo01  ACTIVIDADES DE FASE
 .field
   = f.fields_for :actividads do |builder|
-    = render 'actividad_fields', :f => builder, :form_disabled => form_disabled
+    = render 'form_actividad_valida', :f => builder, :form_disabled => form_disabled
 = link_to_add_fields "Agregar Actividad", f, :actividads if not form_disabled
 %br/
-%br/	
+%br/

@@ -1,0 +1,8 @@
+- title "Validar Proyecti " + @proyecto.nombre.to_s
+
+- form_for @proyecto, :html => { :multipart => true } do |f|
+  = render 'form_valida', :f => f, :form_disabled => true
+  .actions{:align => "center"}
+    = f.submit 'Actualizar Proyecto'
+= link_button 'Ver', @proyecto
+= link_button 'Volver', proyectos_path

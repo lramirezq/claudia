@@ -1,7 +1,5 @@
 .fields
   = f.hidden_field :_destroy
-  =f.check_box :valida, options ={:style => "display:none;"}
-  =f.check_box :rechaza, options ={:style => "display:none;"}
   %table.sglea
     %tr
     - if f.object.archivo_file_name.nil?
@@ -19,9 +17,4 @@
       %td.inp VALIDADO
     - else
       %td.inp RECHAZADO
-    - if current_user.roles.map(&:nombre).join(', ').to_s["Usuario"] == "Usuario"
-      %td.tit Valida?
-      %td.inp=f.radio_button :archivo_file_size , :valida, :onclick => "testing('valida', this)"
-      %td.tit Rechaza?
-      %td.inp=f.radio_button :archivo_file_size , :valida, :onclick => "testing('rechaza', this)"
     %td.inp= link_to_remove_fields "Eliminar", f if not form_disabled

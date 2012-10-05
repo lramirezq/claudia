@@ -33,21 +33,7 @@ Claudia::Application.routes.draw do
   end
 
   root :to => "home#index"
-#  match 'reports/informe_ejecutivo(.:format)' => "reports#informe_ejecutivo", :as => :report_informe_ejecutivo
-#  match 'reports/ejecutivo(.:format)' => "reports#ejecutivo", :as => :report_ejecutivo
-#  match 'reports/eventos(.:format)' => "reports#evento", :as => :report_evento
-#  match 'reports/victimas(.:format)' => "reports#victima", :as => :report_victima
-#  match 'reports/imputados(.:format)' => "reports#imputado", :as => :report_imputado
-#  match 'javascripts/comunas(.:format)' => "javascripts#comunas"
-#  match 'javascripts/estaciones(.:format)' => "javascripts#estaciones"
-#  match 'javascripts/victimas(.:format)' => "javascripts#victimas"
-#  match 'javascripts/imputados(.:format)' => "javascripts#imputados"
-#  match 'javascripts/fiscalias(.:format)' => "javascripts#fiscalias"
-#  match 'javascripts/causas(.:format)' => "javascripts#causas"
-#  match "eventos/:id/validate" => "eventos#validate", :as => :validate_evento
-#  match "causas/:id/validate" => "causas#validate", :as => :validate_causa
-  match "p/adduser(.:format)" => "proyectos#adduser", :as => :add_user
-  
+  match "proyectos/:id/validate" => "proyectos#validate", :as => :validate_proyecto
   # match ':controller(/:action(/:id(.:format)))'
   
   # The priority is based upon order of creation:

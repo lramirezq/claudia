@@ -1,0 +1,29 @@
+- if @proyecto.errors.any?
+  #error_explanation
+    %h2 #{@proyecto.errors.count} errores impiden ingresar el proyecto:
+    %ul
+      - @proyecto.errors.full_messages.each do |msg|
+        %li= msg
+
+%h2.titulo01 PROYECTO VALIDA DOCUMENTOS
+=f.hidden_field :id
+%br/
+%br/
+%table.sglea
+  %tr
+    %td.tit Nombre
+    %td.inp= @proyecto.nombre
+    %td.tit Ambiente
+    %td.inp= @proyecto.ambiente
+  %tr 
+    %td.tit Fecha Inicio
+    %td.inp= @proyecto.fechainicio
+    %td.tit Fecha Termino
+    %td.inp= f.object.fechatermino
+  
+
+
+.field
+  = f.fields_for :fases do |builder|
+    = render 'form_fase_valida', :f => builder, :form_disabled => form_disabled
+

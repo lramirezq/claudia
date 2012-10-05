@@ -16,16 +16,21 @@ class Ability
     if user.role? :administrador
       can :manage, User
       can :manage, Mantenedor
-      can :manage, Proyecto
+      can :index, Proyecto
+      can :create, Proyecto
+      can :read, Proyecto
+      can :show, Proyecto
     end
     
     if user.role? :usuario  
-      can :manage, Documento    
+      can :manage, Documento
+      can :validate, Proyecto    
       can :index, Proyecto
+      can :update, Proyecto
       can :read, Proyecto
     end
     
-    if user.role? :jefe
+    if user.role? :jefe_proyecto
       can :index, Proyecto
       can :read, Proyecto
       can :edit, Proyecto

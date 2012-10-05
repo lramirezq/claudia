@@ -20,7 +20,9 @@
     %td.titg Ambiente
     %td.titg % Avance
     %td.titg Ver
-    %td.titg Editar
+    - if current_user.roles.map(&:nombre).join(',').to_s["Usuario"] != "Usuario"
+      %td.titg Editar
+    %td.titg Validar Docs
     %td.titg Eliminar
   - @proyectos.each do |proyecto|
     - if proyecto.users.include?(current_user) || current_user.roles.map(&:nombre).join(', ').to_s["Administrador"] == "Administrador"
@@ -31,7 +33,9 @@
         %td= proyecto.ambiente
         %td= proyecto.porcentaje.to_s==""?"0 %":proyecto.porcentaje.to_s+" %"
         %td= link_to image_tag("ver.png"), proyecto
-        %td= link_to image_tag("editar.png"), edit_proyecto_path(proyecto)
+        - if current_user.roles.map(&:nombre).join(',').to_s["Usuario"] != "Usuario"
+          %td= link_to image_tag("editar.png"), edit_proyecto_path(proyecto)
+        %td= link_to image_tag("validar.png"), validate_proyecto_path(proyecto)
         %td= link_to image_tag("eliminar.png"), proyecto, :confirm => '¿Está Seguro?', :method => :delete
       
 %br/

@@ -186,3 +186,25 @@ function estado_causa(id){
 	$("#proyecto_porcentaje").val(a.toFixed(2));
   }
 
+
+  function testing(x, f){
+		
+		id = f.id;
+		id_proyecto = $("#proyecto_id").val();
+		id = id.substring(0, id.length - 24);
+		id = "#"+id+"valida";
+		rechaza = id.substring(0, id.length - 6);
+		rechaza+="rechaza"
+	
+		if (x =="valida"){
+			$(id).attr('checked', true);
+			$(rechaza).attr('checked', false);
+		}else{
+			$(id).attr('checked', false);
+			$(rechaza).attr('checked', true);
+		}
+
+		document.forms["edit_proyecto_"+id_proyecto].submit();
+
+  }
+

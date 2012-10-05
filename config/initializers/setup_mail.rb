@@ -1,11 +1,9 @@
 ActionMailer::Base.smtp_settings = {
-  :address              => "smtp.gmail.com",
+  :address              => "info@luis-ramirez.cl",
   :port                 => 587,
-  :domain               => "grupotc.cl",
-  :user_name            => "grupotc.testing",
-  :password             => "grupotc125",
+  :domain               => "luis-ramirez.cl",
+  :user_name            => "",
+  :password             => "",
   :authentication       => "plain",
   :enable_starttls_auto => true
-
-
 }
