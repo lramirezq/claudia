@@ -79,8 +79,6 @@ end
   Mantenedor.create(:tipo => :ambiente, :valor => valor)
 end
 
-
-
 # roles
 [ "Administrador",
   "Jefe Proyecto",
