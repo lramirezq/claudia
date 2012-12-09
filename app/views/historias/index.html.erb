@@ -1,0 +1,27 @@
+<h1>Listing historias</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Action</th>
+    <th>Fecha</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @historias.each do |historia| %>
+  <tr>
+    <td><%= historia.user %></td>
+    <td><%= historia.action %></td>
+    <td><%= historia.fecha %></td>
+    <td><%= link_to 'Show', historia %></td>
+    <td><%= link_to 'Edit', edit_historia_path(historia) %></td>
+    <td><%= link_to 'Destroy', historia, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Historia', new_historia_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @historia.user %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%= @historia.action %>
+</p>
+
+<p>
+  <b>Fecha:</b>
+  <%= @historia.fecha %>
+</p>
+
+
+<%= link_to 'Edit', edit_historia_path(@historia) %> |
+<%= link_to 'Back', historias_path %>

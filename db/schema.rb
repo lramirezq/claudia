@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121004062953) do
+ActiveRecord::Schema.define(:version => 20121209195821) do
 
   create_table "actividads", :force => true do |t|
     t.string   "nombre"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(:version => 20121004062953) do
     t.integer  "fase_id"
   end
 
+  create_table "historias", :force => true do |t|
+    t.string   "user"
+    t.string   "action"
+    t.date     "fecha"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "proyecto_id"
+  end
+
   create_table "mantenedors", :force => true do |t|
     t.string   "tipo"
     t.string   "valor",      :limit => 1023
@@ -100,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20121004062953) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "porcentaje"
+    t.integer  "historia_id"
   end
 
   create_table "proyectos_users", :force => true do |t|

@@ -1,5 +1,7 @@
 Claudia::Application.routes.draw do
 
+  resources :historias
+
   resources :actividads
 
   resources :fases

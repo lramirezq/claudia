@@ -17,10 +17,30 @@
 .field
   = f.fields_for :documentos do |builder|
     = render 'form_document_fields', :f => builder, :form_disabled => form_disabled
-= link_to_add_fields "Agregar Archivo", f, :documentos if not form_disabled
+- if current_user.roles.map(&:nombre).join(',').to_s["Analista"] == "Analista" && f.object.nombre == "Fase Análisis"
+  = link_to_add_fields "Agregar Archivo", f, :documentos if not form_disabled
+- if current_user.roles.map(&:nombre).join(',').to_s["Analista"] == "Analista" && f.object.nombre == "Fase Diseño"
+  = link_to_add_fields "Agregar Archivo", f, :documentos if not form_disabled
+- if current_user.roles.map(&:nombre).join(',').to_s["Tester"] == "Tester" && f.object.nombre == "Fase Ejecución"
+  = link_to_add_fields "Agregar Archivo", f, :documentos if not form_disabled
+- if current_user.roles.map(&:nombre).join(',').to_s["Tester"] == "Tester" && f.object.nombre == "Cierre"
+  = link_to_add_fields "Agregar Archivo", f, :documentos if not form_disabled
+- if f.object.nombre == "Aceptación (opcional)"
+  = link_to_add_fields "Agregar Archivo", f, :documentos if not form_disabled
 %br/
 %br/
-	
+
+
+
+
+
+
+
+
+
+
+
+ 	
 %h3.titulo01  ACTIVIDADES DE FASE
 .field
   = f.fields_for :actividads do |builder|

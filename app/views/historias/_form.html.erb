@@ -1,0 +1,29 @@
+<%= form_for(@historia) do |f| %>
+  <% if @historia.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@historia.errors.count, "error") %> prohibited this historia from being saved:</h2>
+
+      <ul>
+      <% @historia.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :action %><br />
+    <%= f.text_field :action %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha %><br />
+    <%= f.date_select :fecha %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
