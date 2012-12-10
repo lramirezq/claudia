@@ -25,7 +25,6 @@ class FasesController < ApplicationController
   # GET /fases/new.xml
   def new
     @fase = Fase.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @fase }

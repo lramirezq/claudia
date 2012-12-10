@@ -5,7 +5,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos.xml
   def index
      @action = "index"
-      puts "pase por aca index !"
+     
     @proyectos = paginamiento Proyecto.all(:order => "id DESC")
     cod = params[:search]
     us = params[:user]
@@ -42,7 +42,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos/1.xml
   def show
      @action = "show"
-      puts "pase por aca show !"
+     
     @proyecto = Proyecto.find(params[:id])
 
     respond_to do |format|
@@ -54,7 +54,7 @@ class ProyectosController < ApplicationController
   # GET /proyectos/new
   # GET /proyectos/new.xml
   def new
-     puts "pase por aca new !"
+    
      @action = "new"
     @proyecto = Proyecto.new
     @users = User.all
@@ -162,7 +162,13 @@ class ProyectosController < ApplicationController
   # POST /proyectos.xml
   def create
     @proyecto = Proyecto.new(params[:proyecto])
-  puts "pase por aca create !"
+  
+    #crear historial
+    h = Historia.new
+    h.user = current_user.nombre.to_s
+    h.action = "Ha creado el Proyecto"
+    @proyecto.historias << h
+    
     respond_to do |format|
       if @proyecto.save
         format.html { redirect_to(@proyecto, :notice => 'Proyecto fue creado exitosamente.') }
@@ -179,7 +185,12 @@ class ProyectosController < ApplicationController
   def update
     @proyecto = Proyecto.find(params[:id])
      @action = "update"
-     puts "pase por aca update !"
+     #Actualizar historial
+     h = Historia.new
+     h.user = current_user.nombre.to_s
+     h.action = "Ha actualizado el Proyecto"
+     @proyecto.historias << h
+     
     respond_to do |format|
       if @proyecto.update_attributes(params[:proyecto])
         format.html { redirect_to(@proyecto, :notice => 'Proyecto fue actualizado correctamente.') }

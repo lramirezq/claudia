@@ -58,6 +58,18 @@
           = check_box_tag "proyecto[user_ids][]", user.id, @proyecto.users.include?(user), { :id => "proyecto_user_ids_" + user.id.to_s }
           %label{:for => "proyecto_user_ids_#{user.id}"}= user.nombre + " (" +user.roles.map(&:nombre).join(', ') +")"
 
+%h2 Historial del Proyecto
+%table.sglea.datos
+  %tr
+    %td.titg Fecha
+    %td.titg Usuario
+    %td.titg Acción
+  - @proyecto.historias.each do |h|
+    %tr
+      %td= h.created_at.strftime('%Y-%m-%d %H:%M')
+      %td= h.user
+      %td= h.action
+
 :javascript
   recalcular();
 
