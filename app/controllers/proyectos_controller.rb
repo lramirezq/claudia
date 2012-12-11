@@ -44,7 +44,7 @@ class ProyectosController < ApplicationController
      @action = "show"
      
     @proyecto = Proyecto.find(params[:id])
-
+    @proyecto.fases.sort_by {:id}
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @proyecto }
@@ -155,6 +155,7 @@ class ProyectosController < ApplicationController
   def edit
      puts "pase por aca edit !"
     @proyecto = Proyecto.find(params[:id])
+    @proyecto.fases.sort_by {:id}
     @action = "edit"
   end
 

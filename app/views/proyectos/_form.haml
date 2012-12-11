@@ -43,7 +43,6 @@
       });
   
 
-
 .field
   = f.fields_for :fases do |builder|
     = render 'fase_fields', :f => builder, :form_disabled => form_disabled
@@ -55,6 +54,7 @@
     %td.inp
       - for user in User.all
         %p
+
           = check_box_tag "proyecto[user_ids][]", user.id, @proyecto.users.include?(user), { :id => "proyecto_user_ids_" + user.id.to_s }
           %label{:for => "proyecto_user_ids_#{user.id}"}= user.nombre + " (" +user.roles.map(&:nombre).join(', ') +")"
 
