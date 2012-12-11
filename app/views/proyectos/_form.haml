@@ -47,16 +47,24 @@
   = f.fields_for :fases do |builder|
     = render 'fase_fields', :f => builder, :form_disabled => form_disabled
 = link_to_add_fields "Agregar Fase", f, :fases if not form_disabled
-
-%table.sglea
-  %tr
-    %td.tit Usuarios
-    %td.inp
-      - for user in User.all
-        %p
-
-          = check_box_tag "proyecto[user_ids][]", user.id, @proyecto.users.include?(user), { :id => "proyecto_user_ids_" + user.id.to_s }
-          %label{:for => "proyecto_user_ids_#{user.id}"}= user.nombre + " (" +user.roles.map(&:nombre).join(', ') +")"
+%h2 Usuarios
+- if current_user.roles.map(&:nombre).join(',').to_s["Jefe Proyecto"] != "Jefe Proyecto" &&  current_user.roles.map(&:nombre).join(',').to_s["Administrador"] != "Administrador"
+  %table.sglea
+    %tr
+      %td.tit Usuarios
+      %td.inp
+        - @proyecto.users.each do |u|
+          %p
+            = u.nombre + " (" +u.roles.map(&:nombre).join(', ') +")"
+-else
+  %table.sglea
+    %tr
+      %td.tit Usuarios
+      %td.inp
+        - for user in User.all
+          %p
+            = check_box_tag "proyecto[user_ids][]", user.id, @proyecto.users.include?(user), { :id => "proyecto_user_ids_" + user.id.to_s }
+            %label{:for => "proyecto_user_ids_#{user.id}"}= user.nombre + " (" +user.roles.map(&:nombre).join(', ') +")"
 
 %h2 Historial del Proyecto
 %table.sglea.datos
